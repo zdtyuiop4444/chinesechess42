@@ -4,5 +4,6 @@
 }
 
 .name {
-    -fx-font-size: 10px;
+    -fx-font-family: "Kaiti";
+    -fx-font-size: 40px;
 }

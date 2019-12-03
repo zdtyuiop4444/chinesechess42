@@ -16,6 +16,8 @@ public class chessMain extends Application {
         stage.getIcons().clear();
         stage.getIcons().add(new Image("/chinesechess/images/42.png"));
         stage.setScene(new Scene(Root));
+        stage.setMinHeight(720);
+        stage.setMinWidth(1280);
         stage.show();
     }
 

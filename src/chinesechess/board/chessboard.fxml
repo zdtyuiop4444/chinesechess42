@@ -1,87 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="root" stylesheets="@boardstyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chinesechess.board.chessboardController">
+<BorderPane fx:id="root" prefHeight="720" prefWidth="1280" stylesheets="@boardstyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chinesechess.board.chessboardController">
+
    <center>
-      <GridPane fx:id="gameboard" alignment="center" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280">
+      <GridPane fx:id="gameboard" alignment="center" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
          <rowConstraints>
-            <RowConstraints prefHeight="80.0" />
-            <RowConstraints prefHeight="80.0" />
-            <RowConstraints prefHeight="80.0" />
-            <RowConstraints prefHeight="80.0" />
-            <RowConstraints prefHeight="80.0" />
-            <RowConstraints prefHeight="80.0" />
-            <RowConstraints prefHeight="80.0" />
-            <RowConstraints prefHeight="80.0" />
-            <RowConstraints prefHeight="80.0" />
-            <RowConstraints prefHeight="80.0" />
+            <RowConstraints prefHeight="${root.height*0.1}" />
+            <RowConstraints prefHeight="${root.height*0.1}" />
+            <RowConstraints prefHeight="${root.height*0.1}" />
+            <RowConstraints prefHeight="${root.height*0.1}" />
+            <RowConstraints prefHeight="${root.height*0.1}" />
+            <RowConstraints prefHeight="${root.height*0.1}" />
+            <RowConstraints prefHeight="${root.height*0.1}" />
+            <RowConstraints prefHeight="${root.height*0.1}" />
+            <RowConstraints prefHeight="${root.height*0.1}" />
+            <RowConstraints prefHeight="${root.height*0.1}" />
          </rowConstraints>
-      
+
          <columnConstraints>
-            <ColumnConstraints prefWidth="80.0" />
-            <ColumnConstraints prefWidth="80.0" />
-            <ColumnConstraints prefWidth="80.0" />
-            <ColumnConstraints prefWidth="80.0" />
-            <ColumnConstraints prefWidth="80.0" />
-            <ColumnConstraints prefWidth="80.0" />
-            <ColumnConstraints prefWidth="80.0" />
-            <ColumnConstraints prefWidth="80.0" />
-            <ColumnConstraints prefWidth="80.0" />
+            <ColumnConstraints prefWidth="${root.height*0.1}" />
+            <ColumnConstraints prefWidth="${root.height*0.1}" />
+            <ColumnConstraints prefWidth="${root.height*0.1}" />
+            <ColumnConstraints prefWidth="${root.height*0.1}" />
+            <ColumnConstraints prefWidth="${root.height*0.1}" />
+            <ColumnConstraints prefWidth="${root.height*0.1}" />
+            <ColumnConstraints prefWidth="${root.height*0.1}" />
+            <ColumnConstraints prefWidth="${root.height*0.1}" />
+            <ColumnConstraints prefWidth="${root.height*0.1}" />
          </columnConstraints>
          <children>
-         
-            <Line endX="320.0" startX="-320.0" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Line endX="320.0" startX="-320.0" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Line endX="320.0" startX="-320.0" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Line endX="320.0" startX="-320.0" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <Line endX="320.0" startX="-320.0" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-            <Line endX="320.0" startX="-320.0" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-            <Line endX="320.0" startX="-320.0" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-            <Line endX="320.0" startX="-320.0" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-            <Line endX="320.0" startX="-320.0" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-            <Line endX="320.0" startX="-320.0" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
-            <Line endY="360.0" startY="-360.0" GridPane.halignment="CENTER" GridPane.rowSpan="10" GridPane.valignment="CENTER" />
-            <Line endY="360.0" startY="-360.0" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowSpan="10" GridPane.valignment="CENTER" />
-            <Line endY="160.0" startY="-160.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="160.0" startY="-160.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="160.0" startY="-160.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="160.0" startY="-160.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="160.0" startY="-160.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="160.0" startY="-160.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="160.0" startY="-160.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="160.0" startY="-160.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="160.0" startY="-160.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="160.0" startY="-160.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="160.0" startY="-160.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="160.0" startY="-160.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="160.0" startY="-160.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="160.0" startY="-160.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endX="80.0" endY="80.0" startX="-80.0" startY="-80.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Line endX="80.0" endY="80.0" startX="-80.0" startY="-80.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-            <Line endX="80.0" endY="-80.0" startX="-80.0" startY="80.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Line endX="80.0" endY="-80.0" startX="-80.0" startY="80.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+
+            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
+            <Line endY="${root.height*0.1*4.5}" startY="${root.height*0.1*-4.5}" GridPane.halignment="CENTER" GridPane.rowSpan="10" GridPane.valignment="CENTER" />
+            <Line endY="${root.height*0.1*4.5}" startY="${root.height*0.1*-4.5}" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowSpan="10" GridPane.valignment="CENTER" />
+            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+            <Line endX="${root.height*0.1}" endY="${root.height*0.1}" startX="${root.height*0.1*-1}" startY="${root.height*0.1*-1}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Line endX="${root.height*0.1}" endY="${root.height*0.1}" startX="${root.height*0.1*-1}" startY="${root.height*0.1*-1}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+            <Line endX="${root.height*0.1}" endY="${root.height*0.1*-1}" startX="${root.height*0.1*-1}" startY="${root.height*0.1}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Line endX="${root.height*0.1}" endY="${root.height*0.1*-1}" startX="${root.height*0.1*-1}" startY="${root.height*0.1}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="back" text="楚河" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
             <Text rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="back" text="汉界" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
-            <Circle fx:id="carbl" fill="#d0c380" radius="30.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Circle fx:id="carbli" fill="#eee6b0" radius="27.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Group fx:id="carbl" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" autoSizeChildren="true" styleClass="name" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <children>
+                  <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="車" textOrigin="CENTER" />
+               </children>
+            </Group>
          </children>
-      
+
       </GridPane>
    </center>
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" BorderPane.alignment="CENTER">
          <items>
-            <FlowPane prefHeight="200.0" prefWidth="200.0" />
-            <FlowPane prefHeight="200.0" prefWidth="200.0" />
+   
+               <FlowPane />
+               <FlowPane />
          </items>
+
       </SplitPane>
    </right>
    
