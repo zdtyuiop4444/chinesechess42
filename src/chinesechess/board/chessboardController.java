@@ -14,13 +14,11 @@ import javafx.scene.text.Font;
 
 public class chessboardController {
     @FXML
-    public Circle carbli;
-    @FXML
     private BorderPane root;
     @FXML
     public GridPane gameboard;
     @FXML
-    private Group carbl;
+    private Group Chariotbl;
 
     @FXML
     private void initialize() {

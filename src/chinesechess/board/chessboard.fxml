@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
@@ -10,89 +11,328 @@
 
 <BorderPane fx:id="root" prefHeight="720" prefWidth="1280" stylesheets="@boardstyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chinesechess.board.chessboardController">
 
-   <center>
-      <GridPane fx:id="gameboard" alignment="center" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
-         <rowConstraints>
-            <RowConstraints prefHeight="${root.height*0.1}" />
-            <RowConstraints prefHeight="${root.height*0.1}" />
-            <RowConstraints prefHeight="${root.height*0.1}" />
-            <RowConstraints prefHeight="${root.height*0.1}" />
-            <RowConstraints prefHeight="${root.height*0.1}" />
-            <RowConstraints prefHeight="${root.height*0.1}" />
-            <RowConstraints prefHeight="${root.height*0.1}" />
-            <RowConstraints prefHeight="${root.height*0.1}" />
-            <RowConstraints prefHeight="${root.height*0.1}" />
-            <RowConstraints prefHeight="${root.height*0.1}" />
-         </rowConstraints>
+    <center>
+        <GridPane fx:id="gameboard" alignment="center" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+            <rowConstraints>
+                <RowConstraints prefHeight="${root.height*0.1}" />
+                <RowConstraints prefHeight="${root.height*0.1}" />
+                <RowConstraints prefHeight="${root.height*0.1}" />
+                <RowConstraints prefHeight="${root.height*0.1}" />
+                <RowConstraints prefHeight="${root.height*0.1}" />
+                <RowConstraints prefHeight="${root.height*0.1}" />
+                <RowConstraints prefHeight="${root.height*0.1}" />
+                <RowConstraints prefHeight="${root.height*0.1}" />
+                <RowConstraints prefHeight="${root.height*0.1}" />
+                <RowConstraints prefHeight="${root.height*0.1}" />
+            </rowConstraints>
 
-         <columnConstraints>
-            <ColumnConstraints prefWidth="${root.height*0.1}" />
-            <ColumnConstraints prefWidth="${root.height*0.1}" />
-            <ColumnConstraints prefWidth="${root.height*0.1}" />
-            <ColumnConstraints prefWidth="${root.height*0.1}" />
-            <ColumnConstraints prefWidth="${root.height*0.1}" />
-            <ColumnConstraints prefWidth="${root.height*0.1}" />
-            <ColumnConstraints prefWidth="${root.height*0.1}" />
-            <ColumnConstraints prefWidth="${root.height*0.1}" />
-            <ColumnConstraints prefWidth="${root.height*0.1}" />
-         </columnConstraints>
-         <children>
+            <columnConstraints>
+                <ColumnConstraints prefWidth="${root.height*0.1}" />
+                <ColumnConstraints prefWidth="${root.height*0.1}" />
+                <ColumnConstraints prefWidth="${root.height*0.1}" />
+                <ColumnConstraints prefWidth="${root.height*0.1}" />
+                <ColumnConstraints prefWidth="${root.height*0.1}" />
+                <ColumnConstraints prefWidth="${root.height*0.1}" />
+                <ColumnConstraints prefWidth="${root.height*0.1}" />
+                <ColumnConstraints prefWidth="${root.height*0.1}" />
+                <ColumnConstraints prefWidth="${root.height*0.1}" />
+            </columnConstraints>
+            <children>
 
-            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-            <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
-            <Line endY="${root.height*0.1*4.5}" startY="${root.height*0.1*-4.5}" GridPane.halignment="CENTER" GridPane.rowSpan="10" GridPane.valignment="CENTER" />
-            <Line endY="${root.height*0.1*4.5}" startY="${root.height*0.1*-4.5}" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowSpan="10" GridPane.valignment="CENTER" />
-            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
-            <Line endX="${root.height*0.1}" endY="${root.height*0.1}" startX="${root.height*0.1*-1}" startY="${root.height*0.1*-1}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Line endX="${root.height*0.1}" endY="${root.height*0.1}" startX="${root.height*0.1*-1}" startY="${root.height*0.1*-1}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-            <Line endX="${root.height*0.1}" endY="${root.height*0.1*-1}" startX="${root.height*0.1*-1}" startY="${root.height*0.1}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Line endX="${root.height*0.1}" endY="${root.height*0.1*-1}" startX="${root.height*0.1*-1}" startY="${root.height*0.1}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="back" text="楚河" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
-            <Text rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="back" text="汉界" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
-            <Group fx:id="carbl" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" autoSizeChildren="true" styleClass="name" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <children>
-                  <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="車" textOrigin="CENTER" />
-               </children>
-            </Group>
-         </children>
+                <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+                <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                <Line endX="${root.height*0.1*4}" startX="${root.height*0.1*-4}" GridPane.columnSpan="9" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
+                <Line endY="${root.height*0.1*4.5}" startY="${root.height*0.1*-4.5}" GridPane.halignment="CENTER" GridPane.rowSpan="10" GridPane.valignment="CENTER" />
+                <Line endY="${root.height*0.1*4.5}" startY="${root.height*0.1*-4.5}" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowSpan="10" GridPane.valignment="CENTER" />
+                <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+                <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+                <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+                <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+                <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+                <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+                <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+                <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+                <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+                <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+                <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+                <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+                <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+                <Line endY="${root.height*0.1*2}" startY="${root.height*0.1*-2}" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+                <Line endX="${root.height*0.1}" endY="${root.height*0.1}" startX="${root.height*0.1*-1}" startY="${root.height*0.1*-1}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                <Line endX="${root.height*0.1}" endY="${root.height*0.1}" startX="${root.height*0.1*-1}" startY="${root.height*0.1*-1}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                <Line endX="${root.height*0.1}" endY="${root.height*0.1*-1}" startX="${root.height*0.1*-1}" startY="${root.height*0.1}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                <Line endX="${root.height*0.1}" endY="${root.height*0.1*-1}" startX="${root.height*0.1*-1}" startY="${root.height*0.1}" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="back" text="楚河" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
+                <Text rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="back" text="汉界" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
+                <Group fx:id="Chariotbl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="車" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Horsebl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="馬" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Elephantbl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="象" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Advisorbl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="士" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Generalb" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="將" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Advisorbr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="士" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Elephantbr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="象" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Horsebr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="馬" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Chariotbr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="車" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Cannonbl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="砲" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Cannonbr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="砲" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Soldierbll" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="卒" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Soldierbl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="卒" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Soldierbc" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="卒" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Soldierbr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="卒" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Soldierbrr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="卒" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Chariotrl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="俥" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Horserl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="傌" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Elephantrl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="相" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Advisorrl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="仕" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Generalr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="帥" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Advisorrr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="仕" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Elephantrr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="相" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Horserr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="傌" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Chariotrr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="俥" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Cannonrl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="炮" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Cannonrr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="炮" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Soldierrll" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="兵" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Soldierrl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="兵" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Soldierrc" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="兵" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Soldierrr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="兵" textOrigin="CENTER" />
+                    </children>
+                </Group>
+                <Group fx:id="Soldierrrr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                    <children>
+                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="兵" textOrigin="CENTER" />
+                    </children>
+                </Group>
+            </children>
 
-      </GridPane>
-   </center>
-   <left>
-      <VBox BorderPane.alignment="CENTER" />
-   </left>
-   <right>
-      <SplitPane dividerPositions="0.5" orientation="VERTICAL" BorderPane.alignment="CENTER">
-         <items>
-   
-               <FlowPane />
-               <FlowPane />
-         </items>
+        </GridPane>
+    </center>
+    <left>
+        <FlowPane hgap="10.0" prefHeight="720.0" prefWidth="300.0" vgap="10.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="保存">
+               <FlowPane.margin>
+                  <Insets left="5.0" top="10.0" />
+               </FlowPane.margin></Button>
+                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="读取">
+               <FlowPane.margin>
+                  <Insets top="10.0" />
+               </FlowPane.margin></Button>
+                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" text="悔棋">
+               <FlowPane.margin>
+                  <Insets top="10.0" />
+               </FlowPane.margin></Button>
+                <TextArea prefHeight="${root.height-390}" prefWidth="300.0" />
+            <TextFlow prefHeight="60.0" prefWidth="300.0" />
+                <TextArea prefWidth="300.0" />
+                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" text="认输">
+               <FlowPane.margin>
+                  <Insets left="5.0" />
+               </FlowPane.margin></Button>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" text="发送" />
+            </children>
+        </FlowPane>
+    </left>
+    <right>
+        <SplitPane dividerPositions="0.5" orientation="VERTICAL" BorderPane.alignment="CENTER">
+            <items>
+                <FlowPane />
+                <FlowPane />
+            </items>
 
-      </SplitPane>
-   </right>
-   
+        </SplitPane>
+    </right>
+
 </BorderPane>
