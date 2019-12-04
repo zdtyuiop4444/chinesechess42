@@ -302,20 +302,20 @@
     <left>
         <FlowPane hgap="10.0" prefHeight="720.0" prefWidth="300.0" styleClass="background" vgap="10.0" BorderPane.alignment="CENTER">
             <children>
-                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" styleClass="tit" text="保存">
+                <Button fx:id="savebutton" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" styleClass="tit" text="保存">
                <FlowPane.margin>
                   <Insets left="5.0" top="10.0" />
                </FlowPane.margin></Button>
-                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" styleClass="tit" text="读取">
+                <Button fx:id="loadbutton" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" styleClass="tit" text="读取">
                <FlowPane.margin>
                   <Insets top="10.0" />
                </FlowPane.margin></Button>
-                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" styleClass="tit" text="悔棋">
+                <Button fx:id="regretbutton" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" styleClass="tit" text="悔棋">
                <FlowPane.margin>
                   <Insets top="10.0" />
                </FlowPane.margin></Button>
-                <TextArea editable="false" prefHeight="${root.height-420}" prefWidth="300.0" />
-            <TextFlow disable="true" prefHeight="60.0" prefWidth="300.0" style="-fx-border-color: #F09595; -fx-border-insets: 5; -fx-border-width: 5;" textAlignment="CENTER">
+                <TextArea fx:id="loglist" editable="false" prefHeight="${root.height-420}" prefWidth="300.0" />
+            <TextFlow fx:id="turnshower" disable="true" prefHeight="60.0" prefWidth="300.0" style="-fx-border-color: #F09595; -fx-border-insets: 5; -fx-border-width: 5;" textAlignment="CENTER">
                <children>
                   <Text fill="#F09595" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Red Turn">
                      <font>
@@ -323,21 +323,21 @@
                      </font>
                   </Text>
                </children></TextFlow>
-                <TextArea prefWidth="300.0" />
-                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" styleClass="tit" text="认输">
+                <TextArea fx:id="inputarea" prefWidth="300.0" />
+                <Button fx:id="defeatbutton" mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" styleClass="tit" text="认输">
                <FlowPane.margin>
                   <Insets left="5.0" />
                </FlowPane.margin></Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" styleClass="tit" text="发送" />
+            <Button fx:id="sendbutton" mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" styleClass="tit" text="发送" />
             </children>
         </FlowPane>
     </left>
    <right>
       <VBox prefHeight="${root.height}" prefWidth="${root.width-300-root.height*0.9}" styleClass="background" BorderPane.alignment="CENTER">
          <children>
-            <FlowPane prefHeight="${root.height*0.5}" prefWidth="${root.width-300-root.height*0.9}" />
+            <FlowPane   fx:id="bdead" prefHeight="${root.height*0.5}" prefWidth="${root.width-300-root.height*0.9}" />
             <Separator prefWidth="${root.width-300-root.height*0.9}" />
-            <FlowPane prefWidth="${root.width-300-root.height*0.9}" />
+            <FlowPane   fx:id="rdead" prefWidth="${root.width-300-root.height*0.9}" />
          </children>
       </VBox>
    </right>
