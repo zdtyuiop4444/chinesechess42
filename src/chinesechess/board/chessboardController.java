@@ -176,7 +176,9 @@ public class chessboardController {
     public Group[] a = new Group[2];
     public Group[] n = new Group[2];
     public Group[] s = new Group[5];
-    public char[][] game = new char[9][11];
+    public char[][] game = new char[9][10];
+    public char overmore = '0';
+    public int errorline = '0';
 
 
     @FXML
@@ -258,6 +260,8 @@ public class chessboardController {
 
                 loadfc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("棋局文件", "*.chessboard"));
 
+                loadfc.setInitialDirectory(new File("./"));
+
                 File in = loadfc.showOpenDialog(loads);
 
                 if (in == null) {
@@ -290,11 +294,14 @@ public class chessboardController {
         boolean chessstart = false;
         boolean chessover = false;
 
+        String filename = gamemap.getName();
         int num = 0;
+        int line = 0;
 
         String str = "";
 
         while ((str = br.readLine()) != null) {
+            line++;
             str = str.split("#")[0];
             if (!mataover && str.charAt(0) == '@') {
                 if (str.charAt(1) == '@') {
@@ -315,15 +322,11 @@ public class chessboardController {
             }
             if (mataover) {
                 if (!lastmover) {
-                    showalert("缺少行棋方数据");
-                    readmap(new File("basicgame.chessboard"));
-                    loglist.appendText("棋局重开\n");
+                    showalert("缺少行棋方数据",filename,line-2);
                     return;
                 }
                 if (!str.equals("")) {
-                    showalert("空白符丢失");
-                    readmap(new File("basicgame.chessboard"));
-                    loglist.appendText("棋局重开\n");
+                    showalert("空白符丢失",filename,line);
                     return;
                 }
                 chessstart = true;
@@ -336,26 +339,38 @@ public class chessboardController {
                 if (num == 11) {
 
                     if (!str.equals("")) {
-                        showalert("棋局长度错误");
-                        readmap(new File("basicgame.chessboard"));
-                        loglist.appendText("棋局重开\n");
+                        showalert("棋局长度错误",filename,line);
+                        return;
                     }
+
+                }
+
+                if (num == 5 && str.charAt(0) != '-'){
+
+                    showalert("楚河汉界缺失",filename,line);
 
                     return;
 
                 }
 
-                if (str.length() != 9) {
+                if (str.length() != 9 && num!=11) {
 
-                    showalert("棋局宽度错误");
-                    readmap(new File("basicgame.chessboard"));
-                    loglist.appendText("棋局重开\n");
+                    showalert("棋局宽度错误",filename,line);
                     return;
 
-                } else {
+                } else if (num!=11) {
+                    if (num < 5) {
 
-                    for (int i = 0; i < 9; i++) {
-                        game[i][num] = str.charAt(i);
+                        for (int i = 0; i < 9; i++) {
+                            game[i][num] = str.charAt(i);
+                        }
+
+                    }else if (num > 5){
+
+                        for (int i = 0; i < 9; i++) {
+                            game[i][num-1] = str.charAt(i);
+                        }
+
                     }
 
                     num++;
@@ -364,30 +379,186 @@ public class chessboardController {
 
             }
 
+            if (chessover) {
+
+                if (!str.equals("")) {
+                    showalert("空白符丢失",filename,line);
+                    return;
+                }
+                
+            }
+
         }
 
         if (num != 11) {
 
-            showalert("棋局长度错误");
-            readmap(new File("basicgame.chessboard"));
-            loglist.appendText("棋局重开\n");
+            showalert("棋局长度错误",filename,line);
             return;
 
         }
 
+        try {
+            resetgame();
+        } catch (ArrayIndexOutOfBoundsException ea) {
+            switch (overmore) {
+                case 'G':
+                    showalert("棋子数量错误", filename, line+errorline-10,'黑','將');
+                    return;
+                case 'A':
+                    showalert("棋子数量错误", filename, line+errorline-10,'黑','士');
+                    return;
+                case 'E':
+                    showalert("棋子数量错误", filename, line+errorline-10,'黑','象');
+                    return;
+                case 'H':
+                    showalert("棋子数量错误", filename, line+errorline-10,'黑','馬');
+                    return;
+                case 'C':
+                    showalert("棋子数量错误", filename, line+errorline-10,'黑','車');
+                    return;
+                case 'N':
+                    showalert("棋子数量错误", filename, line+errorline-10,'黑','砲');
+                    return;
+                case 'S':
+                    showalert("棋子数量错误", filename, line+errorline-10,'黑','卒');
+                    return;
+                case 'g':
+                    showalert("棋子数量错误", filename, line+errorline-10,'红','帥');
+                    return;
+                case 'a':
+                    showalert("棋子数量错误", filename, line+errorline-10,'红','仕');
+                    return;
+                case 'e':
+                    showalert("棋子数量错误", filename, line+errorline-10,'红','相');
+                    return;
+                case 'h':
+                    showalert("棋子数量错误", filename, line+errorline-10,'红','傌');
+                    return;
+                case 'c':
+                    showalert("棋子数量错误", filename, line+errorline-10,'红','俥');
+                    return;
+                case 'n':
+                    showalert("棋子数量错误", filename, line+errorline-10,'红','炮');
+                    return;
+                case 's':
+                    showalert("棋子数量错误", filename, line+errorline-10,'红','兵');
+                    return;
+                case '!':
+                    showalert("不要往棋盘上放奇怪的东西", filename, line+errorline-10);
+                    return;
+            }
+        }
         resetgame();
 
         loglist.appendText("读取成功\n");
+
+        showalert("读取成功");
 
         fr.close();
         br.close();
 
     }
 
-    public void resetgame() {
+    public void resetgame() throws ArrayIndexOutOfBoundsException {
 
-        for (int i = 0; i < 11; i++) {
+        int Gcount = 0;
+        int Acount = 0;
+        int Ecount = 0;
+        int Hcount = 0;
+        int Ccount = 0;
+        int Ncount = 0;
+        int Scount = 0;
+        int gcount = 0;
+        int acount = 0;
+        int ecount = 0;
+        int hcount = 0;
+        int ccount = 0;
+        int ncount = 0;
+        int scount = 0;
+
+
+        for (int i = 0; i < 10; i++) {
+            errorline = i;
             for (int j = 0; j < 9; j++) {
+
+                switch (game[j][i]){
+                    case 'G' :
+                        overmore = 'G';
+                        GridPane.setConstraints(G[Gcount],j,i);
+                        Gcount++;
+                        break;
+                    case 'A' :
+                        overmore = 'A';
+                        GridPane.setConstraints(A[Acount],j,i);
+                        Acount++;
+                        break;
+                    case 'E' :
+                        overmore = 'E';
+                        GridPane.setConstraints(E[Ecount],j,i);
+                        Ecount++;
+                        break;
+                    case 'H' :
+                        overmore = 'H';
+                        GridPane.setConstraints(H[Hcount],j,i);
+                        Hcount++;
+                        break;
+                    case 'C' :
+                        overmore = 'C';
+                        GridPane.setConstraints(C[Ccount],j,i);
+                        Ccount++;
+                        break;
+                    case 'N' :
+                        overmore = 'N';
+                        GridPane.setConstraints(N[Ncount],j,i);
+                        Ncount++;
+                        break;
+                    case 'S' :
+                        overmore = 's';
+                        GridPane.setConstraints(S[Scount],j,i);
+                        Scount++;
+                        break;
+                    case 'g' :
+                        overmore = 'g';
+                        GridPane.setConstraints(g[gcount],j,i);
+                        gcount++;
+                        break;
+                    case 'a' :
+                        overmore = 'a';
+                        GridPane.setConstraints(a[acount],j,i);
+                        acount++;
+                        break;
+                    case 'e' :
+                        overmore = 'e';
+                        GridPane.setConstraints(e[ecount],j,i);
+                        ecount++;
+                        break;
+                    case 'h' :
+                        overmore = 'h';
+                        GridPane.setConstraints(h[hcount],j,i);
+                        hcount++;
+                        break;
+                    case 'c' :
+                        overmore = 'c';
+                        GridPane.setConstraints(c[ccount],j,i);
+                        ccount++;
+                        break;
+                    case 'n' :
+                        overmore = 'n';
+                        GridPane.setConstraints(n[ncount],j,i);
+                        ncount++;
+                        break;
+                    case 's' :
+                        overmore = 's';
+                        GridPane.setConstraints(s[scount],j,i);
+                        scount++;
+                        break;
+                    case '.' :
+                        break;
+                    default:
+                        overmore = '!';
+                        GridPane.setConstraints(G[2],j,i);;
+                        break;
+                }
 
 
             }
@@ -397,9 +568,35 @@ public class chessboardController {
 
     public void showalert(String content) {
 
+        Alert gamealert = new Alert(Alert.AlertType.CONFIRMATION);
+
+        gamealert.setHeaderText(content);
+
+        gamealert.setContentText("您的文件读取成功");
+
+        gamealert.show();
+
+    }
+
+    public void showalert(String content,String filename,int line) {
+
         Alert gamealert = new Alert(Alert.AlertType.WARNING);
 
-        gamealert.setContentText(content);
+        gamealert.setHeaderText(content);
+
+        gamealert.setContentText("错误发生在文件"+filename+"的第"+line+"行。");
+
+        gamealert.show();
+
+    }
+
+    public void showalert(String content,String filename,int line,char side,char type) {
+
+        Alert gamealert = new Alert(Alert.AlertType.WARNING);
+
+        gamealert.setHeaderText(content);
+
+        gamealert.setContentText("错误发生在文件"+filename+"的第"+line+"行。\n"+side+"方的"+type+"过多。");
 
         gamealert.show();
 
