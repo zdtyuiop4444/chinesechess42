@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Now it can read chessboard file">
-      <change afterPath="$PROJECT_DIR$/src/chinesechess/board/test.chessboard" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Now it can show all error correctlly">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chinesechess/chinesechess/board/chessboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chinesechess/chinesechess/board/chessboardController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chinesechess/board/chessboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chinesechess/board/chessboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chinesechess/board/test.chessboard" beforeDir="false" afterPath="$PROJECT_DIR$/src/chinesechess/board/test.chessboard" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,7 +267,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575559291965</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Now it can show all error correctlly">
+      <created>1575567354259</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1575567354259</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -295,49 +301,50 @@
     <MESSAGE value="Make it looking better" />
     <MESSAGE value="Finish controller construcion" />
     <MESSAGE value="Now it can read chessboard file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Now it can read chessboard file" />
+    <MESSAGE value="Now it can show all error correctlly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Now it can show all error correctlly" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="522" y="176" key="CommitChangelistDialog2" timestamp="1575559289610">
+    <state x="522" y="176" key="CommitChangelistDialog2" timestamp="1575567351838">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="522" y="176" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1575559289610" />
+    <state x="522" y="176" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1575567351838" />
     <state x="92" y="92" width="1736" height="896" key="DiffContextDialog" timestamp="1575470884463">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="92" y="92" width="1736" height="896" key="DiffContextDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1575470884463" />
-    <state width="1877" height="356" key="GridCell.Tab.0.bottom" timestamp="1575567259695">
+    <state width="1877" height="96" key="GridCell.Tab.0.bottom" timestamp="1575615815031">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="356" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1575567259695" />
-    <state width="1877" height="356" key="GridCell.Tab.0.center" timestamp="1575567259694">
+    <state width="1877" height="96" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1575615815031" />
+    <state width="1877" height="96" key="GridCell.Tab.0.center" timestamp="1575615815031">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="356" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1575567259694" />
-    <state width="1877" height="356" key="GridCell.Tab.0.left" timestamp="1575567259694">
+    <state width="1877" height="96" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1575615815031" />
+    <state width="1877" height="96" key="GridCell.Tab.0.left" timestamp="1575615815031">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="356" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1575567259694" />
-    <state width="1877" height="356" key="GridCell.Tab.0.right" timestamp="1575567259695">
+    <state width="1877" height="96" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1575615815031" />
+    <state width="1877" height="96" key="GridCell.Tab.0.right" timestamp="1575615815031">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="356" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1575567259695" />
-    <state width="1877" height="356" key="GridCell.Tab.1.bottom" timestamp="1575567259568">
+    <state width="1877" height="96" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1575615815031" />
+    <state width="1877" height="356" key="GridCell.Tab.1.bottom" timestamp="1575614915393">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="356" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1575567259568" />
-    <state width="1877" height="356" key="GridCell.Tab.1.center" timestamp="1575567259568">
+    <state width="1877" height="356" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1575614915393" />
+    <state width="1877" height="356" key="GridCell.Tab.1.center" timestamp="1575614915392">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="356" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1575567259568" />
-    <state width="1877" height="356" key="GridCell.Tab.1.left" timestamp="1575567259568">
+    <state width="1877" height="356" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1575614915392" />
+    <state width="1877" height="356" key="GridCell.Tab.1.left" timestamp="1575614915392">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="356" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1575567259568" />
-    <state width="1877" height="356" key="GridCell.Tab.1.right" timestamp="1575567259568">
+    <state width="1877" height="356" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1575614915392" />
+    <state width="1877" height="356" key="GridCell.Tab.1.right" timestamp="1575614915392">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="356" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1575567259568" />
+    <state width="1877" height="356" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1575614915392" />
     <state x="107" y="103" key="SettingsEditor" timestamp="1575551314735">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

@@ -279,6 +279,28 @@ public class chessboardController {
 
     }
 
+    public void initgame(){
+
+        for (int i = 0; i < 16; i++) {
+
+            try {
+                bdead.getChildren().add(black[i]);
+            } catch (IllegalArgumentException ie){
+               continue;
+            };
+
+        }
+
+        for (int i = 0; i < 16; i++) {
+            try {
+                rdead.getChildren().add(red[i]);
+            } catch (IllegalArgumentException ie) {
+                continue;
+            };
+        }
+
+    }
+
     public chessboardController() {
 
     }
@@ -303,7 +325,7 @@ public class chessboardController {
         while ((str = br.readLine()) != null) {
             line++;
             str = str.split("#")[0];
-            if (!mataover && str.charAt(0) == '@') {
+            if (!chessstart&&!mataover && str.charAt(0) == '@') {
                 if (str.charAt(1) == '@') {
                     mataover = true;
                     continue;
@@ -476,6 +498,7 @@ public class chessboardController {
         int ncount = 0;
         int scount = 0;
 
+        initgame();
 
         for (int i = 0; i < 10; i++) {
             errorline = i;
@@ -484,71 +507,141 @@ public class chessboardController {
                 switch (game[j][i]){
                     case 'G' :
                         overmore = 'G';
+                        try {
+                            gameboard.getChildren().add(G[Gcount]);;
+                        } catch (IllegalArgumentException ignored){
+
+                        };
                         GridPane.setConstraints(G[Gcount],j,i);
                         Gcount++;
                         break;
                     case 'A' :
                         overmore = 'A';
+                        try {
+                            gameboard.getChildren().add(A[Acount]);
+                        } catch (IllegalArgumentException ignored){
+
+                        };
                         GridPane.setConstraints(A[Acount],j,i);
                         Acount++;
                         break;
                     case 'E' :
                         overmore = 'E';
+                        try {
+                            gameboard.getChildren().add(E[Ecount]);
+                        } catch (IllegalArgumentException ignored){
+
+                        };
                         GridPane.setConstraints(E[Ecount],j,i);
                         Ecount++;
                         break;
                     case 'H' :
                         overmore = 'H';
+                        try {
+                            gameboard.getChildren().add(H[Hcount]);
+                        } catch (IllegalArgumentException ignored){
+
+                        };
                         GridPane.setConstraints(H[Hcount],j,i);
                         Hcount++;
                         break;
                     case 'C' :
                         overmore = 'C';
+                        try {
+                            gameboard.getChildren().add(C[Ccount]);
+                        } catch (IllegalArgumentException ignored){
+
+                        };
                         GridPane.setConstraints(C[Ccount],j,i);
                         Ccount++;
                         break;
                     case 'N' :
                         overmore = 'N';
+                        try {
+                            gameboard.getChildren().add(N[Ncount]);
+                        } catch (IllegalArgumentException ignored){
+
+                        };
                         GridPane.setConstraints(N[Ncount],j,i);
                         Ncount++;
                         break;
                     case 'S' :
                         overmore = 's';
+                        try {
+                            gameboard.getChildren().add(S[Scount]);
+                        } catch (IllegalArgumentException ignored){
+
+                        };
                         GridPane.setConstraints(S[Scount],j,i);
                         Scount++;
                         break;
                     case 'g' :
                         overmore = 'g';
+                        try {
+                            gameboard.getChildren().add(g[gcount]);
+                        } catch (IllegalArgumentException ignored){
+
+                        };
                         GridPane.setConstraints(g[gcount],j,i);
                         gcount++;
                         break;
                     case 'a' :
                         overmore = 'a';
+                        try {
+                            gameboard.getChildren().add(a[acount]);
+                        } catch (IllegalArgumentException ignored){
+
+                        };
                         GridPane.setConstraints(a[acount],j,i);
                         acount++;
                         break;
                     case 'e' :
                         overmore = 'e';
+                        try {
+                            gameboard.getChildren().add(e[ecount]);
+                        } catch (IllegalArgumentException ignored){
+
+                        };
                         GridPane.setConstraints(e[ecount],j,i);
                         ecount++;
                         break;
                     case 'h' :
                         overmore = 'h';
+                        try {
+                            gameboard.getChildren().add(h[hcount]);
+                        } catch (IllegalArgumentException ignored){
+
+                        };
                         GridPane.setConstraints(h[hcount],j,i);
                         hcount++;
                         break;
                     case 'c' :
                         overmore = 'c';
+                        try {
+                            gameboard.getChildren().add(c[ccount]);
+                        } catch (IllegalArgumentException ignored){
+
+                        };
                         GridPane.setConstraints(c[ccount],j,i);
                         ccount++;
                         break;
                     case 'n' :
                         overmore = 'n';
+                        try {
+                            gameboard.getChildren().add(n[ncount]);
+                        } catch (IllegalArgumentException ignored){
+
+                        };
                         GridPane.setConstraints(n[ncount],j,i);
                         ncount++;
                         break;
                     case 's' :
                         overmore = 's';
+                        try {
+                            gameboard.getChildren().add(s[scount]);
+                        } catch (IllegalArgumentException ignored){
+
+                        };
                         GridPane.setConstraints(s[scount],j,i);
                         scount++;
                         break;
