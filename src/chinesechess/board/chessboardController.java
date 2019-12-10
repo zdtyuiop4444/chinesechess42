@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -23,6 +22,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.w3c.dom.events.Event;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -143,7 +143,7 @@ public class chessboardController {
     private Button regretbutton;
 
     @FXML
-    private Button defeatbutton;
+    private Button exitbutton;
 
     @FXML
     private Button sendbutton;
@@ -312,6 +312,12 @@ public class chessboardController {
 
         });
 
+        regretbutton.setOnAction(event -> {
+
+            regret();
+
+        });
+
         readmap(new File("src/chinesechess/board/basicgame.chessboard"));
 
     }
@@ -337,6 +343,174 @@ public class chessboardController {
                 rdead.getChildren().add(red[i]);
             } catch (IllegalArgumentException ignored) {
             }
+        }
+
+    }
+
+    public void regret(){
+
+        if (totalsteps==0){
+            showalert("已经回到开局状态","退无可退");
+            return;
+        }
+
+        int[] posa = new int[2];
+        int[] posb = new int[2];
+        char type;
+
+        String str = gamelog.get(gamelog.size()-1);
+
+        posa[0] = str.charAt(4) - 48;
+        posa[1] = str.charAt(6) - 48;
+        posb[0] = str.charAt(0) - 48;
+        posb[1] = str.charAt(2) - 48;
+        type = game[posa[0]][posa[1]];
+
+        move(posa,posb,type);
+        resurrect(posa);
+
+        gamelog.remove(gamelog.size()-2);
+        gamelog.remove(gamelog.size()-1);
+        totalsteps-=2;
+
+    }
+
+    public void resurrect(int[] pos){
+
+        for (int i = deads.size()-1; i >= 0; i--) {
+            if (pos[0]==Integer.parseInt(String.valueOf(deads.get(i).charAt(0)))&&pos[1]==Integer.parseInt(String.valueOf(deads.get(i).charAt(2)))){
+                switch (deads.get(i).charAt(4)) {
+                    case 'G':
+                        for (Group piece : G) {
+                            try {
+                                gameboard.getChildren().add(piece);
+                                GridPane.setConstraints(piece, pos[0], pos[1]);
+                                break;
+                            } catch (IllegalArgumentException ignored) {
+                            }
+                        }
+                    case 'A':
+                        for (Group piece : A) {
+                            try {
+                                gameboard.getChildren().add(piece);
+                                GridPane.setConstraints(piece, pos[0], pos[1]);
+                                break;
+                            } catch (IllegalArgumentException ignored) {
+                            }
+                        }
+                    case 'E':
+                        for (Group piece : E) {
+                            try {
+                                gameboard.getChildren().add(piece);
+                                GridPane.setConstraints(piece, pos[0], pos[1]);
+                                break;
+                            } catch (IllegalArgumentException ignored) {
+                            }
+                        }
+                    case 'H':
+                        for (Group piece : H) {
+                            try {
+                                gameboard.getChildren().add(piece);
+                                GridPane.setConstraints(piece, pos[0], pos[1]);
+                                break;
+                            } catch (IllegalArgumentException ignored) {
+                            }
+                        }
+                    case 'C':
+                        for (Group piece : C) {
+                            try {
+                                gameboard.getChildren().add(piece);
+                                GridPane.setConstraints(piece, pos[0], pos[1]);
+                                break;
+                            } catch (IllegalArgumentException ignored) {
+                            }
+                        }
+                    case 'N':
+                        for (Group piece : N) {
+                            try {
+                                gameboard.getChildren().add(piece);
+                                GridPane.setConstraints(piece, pos[0], pos[1]);
+                                break;
+                            } catch (IllegalArgumentException ignored) {
+                            }
+                        }
+                    case 'S':
+                        for (Group piece : S) {
+                            try {
+                                gameboard.getChildren().add(piece);
+                                GridPane.setConstraints(piece, pos[0], pos[1]);
+                                break;
+                            } catch (IllegalArgumentException ignored) {
+                            }
+                        }
+                    case 'g':
+                        for (Group piece : g) {
+                            try {
+                                gameboard.getChildren().add(piece);
+                                GridPane.setConstraints(piece, pos[0], pos[1]);
+                                break;
+                            } catch (IllegalArgumentException ignored) {
+                            }
+                        }
+                    case 'a':
+                        for (Group piece : a) {
+                            try {
+                                gameboard.getChildren().add(piece);
+                                GridPane.setConstraints(piece, pos[0], pos[1]);
+                                break;
+                            } catch (IllegalArgumentException ignored) {
+                            }
+                        }
+                    case 'e':
+                        for (Group piece : e) {
+                            try {
+                                gameboard.getChildren().add(piece);
+                                GridPane.setConstraints(piece, pos[0], pos[1]);
+                                break;
+                            } catch (IllegalArgumentException ignored) {
+                            }
+                        }
+                    case 'h':
+                        for (Group piece : h) {
+                            try {
+                                gameboard.getChildren().add(piece);
+                                GridPane.setConstraints(piece, pos[0], pos[1]);
+                                break;
+                            } catch (IllegalArgumentException ignored) {
+                            }
+                        }
+                    case 'c':
+                        for (Group piece : c) {
+                            try {
+                                gameboard.getChildren().add(piece);
+                                GridPane.setConstraints(piece, pos[0], pos[1]);
+                                break;
+                            } catch (IllegalArgumentException ignored) {
+                            }
+                        }
+                    case 'n':
+                        for (Group piece : n) {
+                            try {
+                                gameboard.getChildren().add(piece);
+                                GridPane.setConstraints(piece, pos[0], pos[1]);
+                                break;
+                            } catch (IllegalArgumentException ignored) {
+                            }
+                        }
+                    case 's':
+                        for (Group piece : s) {
+                            try {
+                                gameboard.getChildren().add(piece);
+                                GridPane.setConstraints(piece, pos[0], pos[1]);
+                                break;
+                            } catch (IllegalArgumentException ignored) {
+                            }
+                        }
+                }
+                deads.remove(i);
+                break;
+            }
+
         }
 
     }

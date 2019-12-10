@@ -322,7 +322,7 @@
                   </Text>
                </children></TextFlow>
                 <TextArea fx:id="inputarea" prefWidth="300.0" />
-                <Button fx:id="defeatbutton" mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" styleClass="tit" text="认输">
+                <Button fx:id="exitbutton" mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" styleClass="tit" text="退出">
                <FlowPane.margin>
                   <Insets left="5.0" />
                </FlowPane.margin></Button>
