@@ -4,8 +4,10 @@
       <w>boardstyle</w>
       <w>carbl</w>
       <w>carbli</w>
+      <w>chessmoveseq</w>
       <w>chinesechess</w>
       <w>gameboard</w>
+      <w>initgame</w>
     </words>
   </dictionary>
 </component>

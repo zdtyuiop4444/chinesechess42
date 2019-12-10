@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="root" prefHeight="720" prefWidth="1280" stylesheets="@boardstyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chinesechess.board.chessboardController">
+<BorderPane fx:id="root" prefHeight="720" prefWidth="1280" stylesheets="@boardstyle.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chinesechess.board.chessboardController">
 
     <center>
         <GridPane fx:id="gameboard" alignment="center" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="background">
@@ -335,9 +333,17 @@
    <right>
       <VBox prefHeight="${root.height}" prefWidth="${root.width-300-root.height*0.9}" styleClass="background" BorderPane.alignment="CENTER">
          <children>
-            <FlowPane   fx:id="bdead" prefHeight="${root.height*0.5}" prefWidth="${root.width-300-root.height*0.9}" />
+            <AnchorPane prefHeight="${root.height*0.5}" prefWidth="${root.width-300-root.height*0.9}">
+               <children>
+                  <FlowPane fx:id="bdead" hgap="${root.height*0.1-70}" vgap="${root.height*0.1-70}" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="18.0" />
+               </children>
+            </AnchorPane>
             <Separator prefWidth="${root.width-300-root.height*0.9}" />
-            <FlowPane   fx:id="rdead" prefWidth="${root.width-300-root.height*0.9}" />
+            <AnchorPane prefWidth="${root.width-300-root.height*0.9}">
+               <children>
+                  <FlowPane fx:id="rdead" hgap="${root.height*0.1-70}" vgap="${root.height*0.1-70}" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="18.0"/>
+               </children>
+            </AnchorPane>
          </children>
       </VBox>
    </right>
