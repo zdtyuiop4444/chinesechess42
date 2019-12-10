@@ -384,6 +384,8 @@ public class chessboardController {
 
         }
 
+        loglist.appendText("棋盘数据保存成功\n");
+
         showalert("保存成功");
 
         osw.close();
@@ -573,7 +575,47 @@ public class chessboardController {
 
     }
 
-    public void savemoveseq(File site) throws IOException{}
+    public void savemoveseq(File site) throws IOException{
+
+        int num = 0;
+
+        int ax;
+        int ay;
+        int bx;
+        int by;
+
+        FileOutputStream fos = new FileOutputStream(site);
+
+        OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
+
+        osw.write("@TOTAL_STEP="+totalsteps+"\n");
+
+        osw.write("@@\n\n");
+
+        for (String str:gamelog) {
+            num++;
+
+            ax = Integer.parseInt(String.valueOf(str.charAt(0)));
+            ay = Integer.parseInt(String.valueOf(str.charAt(2)));
+            bx = Integer.parseInt(String.valueOf(str.charAt(4)));
+            by = Integer.parseInt(String.valueOf(str.charAt(6)));
+
+            if (num%2==1) {
+                osw.write((9-ax)+" "+(10-ay)+" "+(9-bx)+" "+(10-by)+"\n");
+            }else{
+                osw.write((ax + 1)+" "+(ay + 1)+" "+(bx + 1)+" "+(by + 1)+"\n");
+            }
+        }
+
+        loglist.appendText("棋谱数据保存成功\n");
+
+        showalert("保存成功");
+
+        osw.close();
+
+        fos.close();
+
+    }
 
     public void readmoveseq(File gameseq) throws IOException{
 
@@ -588,6 +630,7 @@ public class chessboardController {
         int ay;
         int bx;
         int by;
+        int stepcatch = 0;
         char target;
         int[] startpos = new int[2];
         int[] endpos = new int[2];
@@ -607,7 +650,7 @@ public class chessboardController {
 
                 if (str.startsWith("TOTAL_STEP=")){
                     try {
-                        totalsteps = Integer.parseInt(str.substring(11));
+                        stepcatch = Integer.parseInt(str.substring(11));
                         totalstepdata = true;
                     }catch (ArrayIndexOutOfBoundsException ae){
                         showalert("步数数据出错",filename,line);
@@ -697,7 +740,7 @@ public class chessboardController {
 
         }
 
-        if (num==totalsteps){
+        if (num==stepcatch){
             showalert("棋谱数据读取成功");
             loglist.appendText("棋谱数据读取成功\n");
         }else {
@@ -937,7 +980,7 @@ public class chessboardController {
 
         gamealert.setHeaderText(content);
 
-        gamealert.setContentText("您的文件" + content);
+        gamealert.setContentText("您的" + content);
 
         gamealert.show();
 
@@ -1181,6 +1224,8 @@ public class chessboardController {
         game[posb[0]][posb[1]] = type;
 
         gamelog.add(posa[0]+" "+posa[1]+" "+posb[0]+" "+posb[1]);
+
+        totalsteps++;
 
         switch (type) {
             case 'G':
