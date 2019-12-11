@@ -13,13 +13,22 @@
     -fx-background-color: white;
     -fx-font-family: "Yu Gothic UI";
     -fx-font-size: 20px;
+    -fx-text-fill: #EEEEEE;
+}
+
+.information {
+    -fx-font-family: "STXihei";
+    -fx-font-size: 12px;
+    -fx-text-fill: #EEEEEE;
 }
 
 .root {
-    background_color: #EEEEEE;
+    background_color: transparent;
     scroll_pane_background_color: background_color;
     accent_color: #00ADB5;
     tab_pane_background_color: #EEEEEE;
+    -fx-opacity: 0.92;
+    -fx-text-fill: #EEEEEE;
 }
 
 .combo-box-base > .arrow-button > .arrow,
@@ -33,12 +42,12 @@
 }
 
 .background{
-    -fx-background-color: #EEEEEE;
+    -fx-background-color: transparent;
 }
 
 .button {
-    button_background_color: #EEEEEE;
-    background_pressed_color: #393E46;
+    button_background_color: transparent;
+    background_pressed_color: #EEEEEE;
     -shrink-animate-on-press: true;
     border_hover_color: #00ADB5;
     -fx-border-color: transparent;
@@ -50,7 +59,7 @@
     text_color: #222831;
     default_button_text_color: #EEEEEE;
     focus_ring_border_color: #EEEEEE;
-    -fx-text-fill: text_color;
+    -fx-text-fill: #DDDDDD;
     border_hover_default_color: derive(accent_color, -40%);
 }
 
@@ -101,39 +110,38 @@
     thumb_pressed_color: #cccccc;
 }
 
-.text-field {
-    text_color: #222831;
-    border_color: #999999;
-    border_hover_color: #666666;
-    border_disabled_color: #d9d9d9;
+.text-area .content {
+    -fx-background-color: #666666, #666666;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0, 1;
+}
 
-    text_input_background_color: #EEEEEE;
-    background_focused_color: #EEEEEE;
-    background_hover_color: #EEEEEE;
-    background_disabled_color: #eaeaea;
+.text-area:focused .content {
+    -fx-background-color: #666666, #666666;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0, 1;
+}
 
-    text_color: #222831;
-    text_focused_color: #222831;
-    text_disabled_color: #adadad;
-    prompt_text_color: #666666;
+.text-area:disabled .content {
+    -fx-background-color: #666666, #666666;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0, 1;
+}
 
-    highlight_color: accent_color;
-    highlighted_text_color: #EEEEEE;
-    
+.text-area .content .text {
     -fx-font-family: "Yu Gothic UI";
     -fx-font-size: 12px;
-
-    graphic_color: #747474;
+    -fx-text-fill: #EEEEEE;
 }
 
 .label {
-    text_color: #222831;
+    -fx-text-fill: #EEEEEE;
 }
 
 .text {
-    text_color: #222831;
+    -fx-text-fill: #EEEEEE;
 }
 
 .separator{
-    border_color: #999;
+    border_color: transparent;
 }

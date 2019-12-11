@@ -1,6 +1,7 @@
 package chinesechess.board;
 
 import com.sun.glass.ui.CommonDialogs;
+import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
@@ -149,6 +150,9 @@ public class chessboardController {
     private Button sendbutton;
 
     @FXML
+    private Button closebutton;
+
+    @FXML
     private TextArea loglist;
 
     @FXML
@@ -162,6 +166,9 @@ public class chessboardController {
 
     @FXML
     private FlowPane rdead;
+
+    @FXML
+    private TextFlow showerborder;
 
     public Group[] black = new Group[16];
     public Group[] red = new Group[16];
@@ -315,6 +322,12 @@ public class chessboardController {
         regretbutton.setOnAction(event -> {
 
             regret();
+
+        });
+
+        closebutton.setOnAction(event -> {
+
+            Platform.exit();
 
         });
 
@@ -597,10 +610,12 @@ public class chessboardController {
                         lastmover = true;
                         turnshower.setText("Red Turn");
                         turnshower.setFill(Paint.valueOf("#F09595"));
+                        showerborder.setStyle("-fx-border-color: #F09595; -fx-border-insets: 5; -fx-border-width: 5;");
                     } else if (str.matches("@LAST_MOVER=RED")) {
                         lastmover = true;
                         turnshower.setText("Black Turn");
                         turnshower.setFill(Paint.valueOf("#393E46"));
+                        showerborder.setStyle("-fx-border-color: #393E46; -fx-border-insets: 5; -fx-border-width: 5;");
                     }
                 }
                 continue;
