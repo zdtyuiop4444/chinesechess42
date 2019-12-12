@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../board/boardstyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chinesechess.settings.settingviewController">
+   <top>
+      <AnchorPane fx:id="toppane" prefHeight="33.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="backbutton" layoutX="5.0" layoutY="5.0" mnemonicParsing="false" text="←Back">
+               <font>
+                  <Font name="HYGangYiTi-35W Thin" size="12.0" />
+               </font></Button>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <BorderPane.margin>
+            <Insets bottom="2.0" />
+         </BorderPane.margin></AnchorPane>
+   </top>
+   <center>
+      <TabPane prefHeight="261.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="200.0" tabMinWidth="160.0" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="图形">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="198.0" layoutY="58.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="边框" textAlignment="CENTER" />
+                        <CheckBox fx:id="bordercheck" layoutX="338.0" layoutY="63.0" mnemonicParsing="false" />
+                        <Button layoutX="198.0" layoutY="111.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="透明化" textAlignment="CENTER" />
+                        <CheckBox fx:id="optcheck" layoutX="338.0" layoutY="116.0" mnemonicParsing="false" />
+                        <Button layoutX="198.0" layoutY="173.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="全屏" textAlignment="CENTER" />
+                        <CheckBox fx:id="fullcheck" layoutX="338.0" layoutY="178.0" mnemonicParsing="false" />
+                        <Button layoutX="246.0" layoutY="239.0" mnemonicParsing="false" text="重启游戏后生效" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="音乐">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="157.0" layoutY="74.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="选择背景音乐" />
+                        <Button layoutX="157.0" layoutY="140.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="音乐音量" />
+                        <Button layoutX="157.0" layoutY="220.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="音效音量" />
+                        <Slider fx:id="musicslider" layoutX="326.0" layoutY="143.0" />
+                        <Slider fx:id="sfxslider" layoutX="326.0" layoutY="223.0" />
+                        <TextField fx:id="bgmselect" editable="false" layoutX="315.0" layoutY="77.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="游戏">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="181.0" layoutY="81.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="选择存储目录" />
+                        <Button layoutX="181.0" layoutY="146.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="自动存档" />
+                        <Button layoutX="181.0" layoutY="211.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="指令" />
+                        <CheckBox fx:id="autosavecheck" layoutX="375.0" layoutY="216.0" mnemonicParsing="false" />
+                        <CheckBox fx:id="commandcheck" layoutX="375.0" layoutY="151.0" mnemonicParsing="false" />
+                        <TextField fx:id="saveselect" editable="false" layoutX="319.0" layoutY="84.0" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

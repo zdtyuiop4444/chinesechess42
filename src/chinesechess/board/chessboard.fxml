@@ -308,7 +308,7 @@
         </FlowPane>
     </left>
    <right>
-      <VBox prefHeight="${root.height}" prefWidth="${root.width-300-root.height*0.9}" styleClass="background" BorderPane.alignment="CENTER">
+      <VBox fx:id="rightpane" prefHeight="${root.height}" prefWidth="${root.width-300-root.height*0.9}" styleClass="background" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane prefHeight="${root.height*0.5}" prefWidth="${root.width-300-root.height*0.9}">
                <children>

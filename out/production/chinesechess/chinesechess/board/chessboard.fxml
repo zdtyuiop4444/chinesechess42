@@ -71,226 +71,194 @@
                 <Text rotate="180.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="back" text="汉界" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
                 <Group fx:id="Chariotbl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="車" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#292E36" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#292E36" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="車" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Horsebl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="馬" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#292E36" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#292E36" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="馬" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Elephantbl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="象" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#292E36" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#292E36" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="象" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Advisorbl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="士" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#292E36" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#292E36" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="士" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Generalb" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="將" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#292E36" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#292E36" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="將" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Advisorbr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="士" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#292E36" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#292E36" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="士" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Elephantbr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="象" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#292E36" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#292E36" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="象" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Horsebr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="馬" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#292E36" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#292E36" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="馬" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Chariotbr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="車" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#292E36" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#292E36" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="車" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Cannonbl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="砲" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#292E36" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#292E36" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="砲" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Cannonbr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="砲" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#292E36" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#292E36" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="砲" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Soldierbll" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="卒" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#292E36" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#292E36" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="卒" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Soldierbl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="卒" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#292E36" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#292E36" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="卒" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Soldierbc" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="卒" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#292E36" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#292E36" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="卒" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Soldierbr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="卒" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#292E36" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#292E36" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="卒" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Soldierbrr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="卒" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#292E36" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#292E36" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="卒" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Chariotrl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="俥" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#FF6565" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#FF6565" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="俥" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Horserl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="傌" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#FF6565" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#FF6565" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="傌" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Elephantrl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="相" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#FF6565" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#FF6565" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="相" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Advisorrl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="仕" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#FF6565" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#FF6565" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="仕" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Generalr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="帥" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#FF6565" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#FF6565" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="帥" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Advisorrr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="仕" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#FF6565" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#FF6565" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="仕" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Elephantrr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="相" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#FF6565" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#FF6565" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="相" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Horserr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="傌" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#FF6565" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#FF6565" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="傌" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Chariotrr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="俥" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#FF6565" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#FF6565" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="俥" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Cannonrl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="炮" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#FF6565" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#FF6565" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="炮" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Cannonrr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="炮" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#FF6565" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#FF6565" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="炮" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Soldierrll" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="兵" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#FF6565" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#FF6565" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="兵" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Soldierrl" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="兵" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#FF6565" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#FF6565" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="兵" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Soldierrc" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="兵" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#FF6565" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#FF6565" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="兵" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Soldierrr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="兵" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#FF6565" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#FF6565" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="兵" textOrigin="CENTER" />
                     </children>
                 </Group>
                 <Group fx:id="Soldierrrr" autoSizeChildren="true" scaleX="${root.height*0.1/72}" scaleY="${root.height*0.1/72}" styleClass="name" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                     <children>
-                        <Circle fill="#d0ba64" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Circle fill="#ffeba4" radius="27.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fill="red" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="兵" textOrigin="CENTER" />
+                        <Circle fill="#696969" radius="30.0" stroke="#FF6565" strokeType="INSIDE" strokeWidth="4.0" />
+                        <Text fill="#FF6565" layoutX="-20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="兵" textOrigin="CENTER" />
                     </children>
                 </Group>
             </children>
@@ -303,7 +271,10 @@
                 <Button fx:id="savebutton" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" styleClass="tit" text="保存">
                <FlowPane.margin>
                   <Insets left="5.0" top="10.0" />
-               </FlowPane.margin></Button>
+               </FlowPane.margin>
+               <font>
+                  <Font name="HYGangYiTi-35W Thin" size="12.0" />
+               </font></Button>
                 <Button fx:id="loadbutton" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" styleClass="tit" text="读取">
                <FlowPane.margin>
                   <Insets top="10.0" />
@@ -312,8 +283,8 @@
                <FlowPane.margin>
                   <Insets top="10.0" />
                </FlowPane.margin></Button>
-                <TextArea fx:id="loglist" editable="false" prefHeight="${root.height-420}" prefWidth="300.0" />
-            <TextFlow disable="true" prefHeight="60.0" prefWidth="300.0" style="-fx-border-color: #F09595; -fx-border-insets: 5; -fx-border-width: 5;" textAlignment="CENTER">
+                <TextArea fx:id="loglist" editable="false" prefHeight="${root.height-425}" prefWidth="300.0" styleClass="information" />
+            <TextFlow fx:id="showerborder" disable="true" prefHeight="60.0" prefWidth="300.0" style="-fx-border-color: #F09595; -fx-border-insets: 5; -fx-border-width: 5;" textAlignment="CENTER">
                <children>
                   <Text fx:id="turnshower" fill="#F09595" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Red Turn">
                      <font>
@@ -321,31 +292,42 @@
                      </font>
                   </Text>
                </children></TextFlow>
-                <TextArea fx:id="inputarea" prefWidth="300.0" />
+                <TextArea fx:id="inputarea" prefWidth="300.0" styleClass="information" />
                 <Button fx:id="exitbutton" mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" styleClass="tit" text="退出">
                <FlowPane.margin>
                   <Insets left="5.0" />
                </FlowPane.margin></Button>
             <Button fx:id="sendbutton" mnemonicParsing="false" prefHeight="50.0" prefWidth="140.0" styleClass="tit" text="发送" />
             </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets left="10.0" />
+         </BorderPane.margin>
         </FlowPane>
     </left>
    <right>
-      <VBox prefHeight="${root.height}" prefWidth="${root.width-300-root.height*0.9}" styleClass="background" BorderPane.alignment="CENTER">
+      <VBox fx:id="rightpane" prefHeight="${root.height}" prefWidth="${root.width-300-root.height*0.9}" styleClass="background" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane prefHeight="${root.height*0.5}" prefWidth="${root.width-300-root.height*0.9}">
                <children>
                   <FlowPane fx:id="bdead" hgap="${root.height*0.1-70}" vgap="${root.height*0.1-70}" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="18.0" />
+                  <Button fx:id="closebutton" mnemonicParsing="false" scaleX="1.2" text="X" wrapText="true" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
             <Separator prefWidth="${root.width-300-root.height*0.9}" />
             <AnchorPane prefWidth="${root.width-300-root.height*0.9}">
                <children>
-                  <FlowPane fx:id="rdead" hgap="${root.height*0.1-70}" vgap="${root.height*0.1-70}" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="18.0"/>
+                  <FlowPane fx:id="rdead" hgap="${root.height*0.1-70}" vgap="${root.height*0.1-70}" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="18.0" />
                </children>
             </AnchorPane>
          </children>
       </VBox>
    </right>
-
+   
 </BorderPane>

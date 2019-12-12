@@ -1,5 +1,6 @@
 package chinesechess.board;
 
+import chinesechess.chessMain;
 import com.sun.glass.ui.CommonDialogs;
 import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
@@ -16,6 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
@@ -30,6 +32,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class chessboardController {
     @FXML
@@ -168,7 +171,12 @@ public class chessboardController {
     private FlowPane rdead;
 
     @FXML
+    private VBox rightpane;
+
+    @FXML
     private TextFlow showerborder;
+
+    private chessMain chessmain;
 
     public Group[] black = new Group[16];
     public Group[] red = new Group[16];
@@ -263,6 +271,28 @@ public class chessboardController {
         s[3] = Soldierrr;
         s[4] = Soldierrrr;
 
+        AtomicReference<Double> x = new AtomicReference<>((double) 0);
+        AtomicReference<Double> y = new AtomicReference<>((double) 0);
+
+        rightpane.setOnMousePressed(event -> {
+
+            x.set(event.getX());
+            y.set(event.getY());
+
+        });
+
+        rightpane.setOnMouseDragged(event -> {
+
+            chessmain.getStage().setX(event.getScreenX() - x.get() - 950);
+
+            if(event.getScreenY() - y.get() < 0) {
+                chessmain.getStage().setY(0);
+            }else {
+                chessmain.getStage().setY(event.getScreenY() - y.get());
+            }
+
+        });
+
         loadbutton.setOnAction(event -> {
 
             Stage loads = new Stage();
@@ -277,7 +307,7 @@ public class chessboardController {
 
             if (in.getName().substring(in.getName().lastIndexOf(".")).equals(".chessboard")){
                 try {
-                    readmap(in);
+                    readmap(in,false);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -325,13 +355,31 @@ public class chessboardController {
 
         });
 
+        exitbutton.setOnAction(event -> {
+
+            try {
+                chessmain.showmainview();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        });
+
         closebutton.setOnAction(event -> {
 
             Platform.exit();
 
         });
 
-        readmap(new File("src/chinesechess/board/basicgame.chessboard"));
+        readmap(new File("src/chinesechess/board/basicgame.chessboard"),true);
+
+    }
+
+    public void setmain(chessMain chessmain){
+        this.chessmain = chessmain;
+    }
+
+    public chessboardController() {
 
     }
 
@@ -528,10 +576,6 @@ public class chessboardController {
 
     }
 
-    public chessboardController() {
-
-    }
-
     public void savemap(File site) throws IOException {
 
         FileOutputStream fos = new FileOutputStream(site);
@@ -581,7 +625,7 @@ public class chessboardController {
 
     }
 
-    public void readmap(File gamemap) throws IOException {
+    public void readmap(File gamemap,boolean on) throws IOException {
 
         FileReader fr = new FileReader(gamemap);
 
@@ -750,15 +794,17 @@ public class chessboardController {
                     showalert("不要往棋盘上放奇怪的东西", filename, line + errorline - 10);
                     return;
                 case '0':
-                    readmap(new File("src/chinesechess/board/basicgame.chessboard"));
+                    readmap(new File("src/chinesechess/board/basicgame.chessboard"),false);
                     return;
             }
         }
 
         loglist.appendText("棋盘数据读取成功\n");
 
-        showalert("棋盘数据读取成功");
-
+        if (!on) {
+            showalert("棋盘数据读取成功");
+        }
+        
         fr.close();
         br.close();
 
@@ -1175,6 +1221,20 @@ public class chessboardController {
 
     }
 
+    public void showalert(String content,boolean on) {
+
+        Alert gamealert = new Alert(Alert.AlertType.CONFIRMATION);
+
+        gamealert.setHeaderText(content);
+
+        gamealert.setContentText("您的" + content);
+
+        gamealert.show();
+
+        gamealert.close();
+
+    }
+
     public void showalert(String content, String filename, int line) {
 
         Alert gamealert = new Alert(Alert.AlertType.WARNING);
@@ -1574,6 +1634,5 @@ public class chessboardController {
         }
 
     }
-
 
 }
