@@ -266,7 +266,7 @@
         </GridPane>
     </center>
     <left>
-        <FlowPane hgap="10.0" prefHeight="720.0" prefWidth="300.0" styleClass="background" vgap="10.0" BorderPane.alignment="CENTER">
+        <FlowPane fx:id="leftpane" hgap="10.0" prefHeight="720.0" prefWidth="300.0" styleClass="background" vgap="10.0" BorderPane.alignment="CENTER">
             <children>
                 <Button fx:id="savebutton" mnemonicParsing="false" prefHeight="50.0" prefWidth="90.0" styleClass="tit" text="保存">
                <FlowPane.margin>

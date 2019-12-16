@@ -10,16 +10,19 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.Group;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -30,6 +33,7 @@ import org.w3c.dom.events.Event;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicReference;
@@ -174,9 +178,16 @@ public class chessboardController {
     private VBox rightpane;
 
     @FXML
+    private FlowPane leftpane;
+
+    @FXML
     private TextFlow showerborder;
 
     private chessMain chessmain;
+
+    public List<Circle> possibleindicater = new ArrayList<>();
+
+    public List<Group> pieces = new ArrayList<>();
 
     public Group[] black = new Group[16];
     public Group[] red = new Group[16];
@@ -198,8 +209,11 @@ public class chessboardController {
     public char overmore = '0';
     public int errorline = 0;
     public int totalsteps = 0;
+    public char dady = '0';
+    public char baba = '0';
     public List<String> gamelog = new ArrayList<>();
     public List<String> deads = new ArrayList<>();
+    public int[] activepos = new int[2];
 
 
     @FXML
@@ -271,8 +285,70 @@ public class chessboardController {
         s[3] = Soldierrr;
         s[4] = Soldierrrr;
 
+        pieces.addAll(Arrays.asList(black));
+
+        pieces.addAll(Arrays.asList(red));
+
+        for (Group pic : pieces) {
+
+            pic.setOnMouseClicked(event -> {
+
+                recallpossible();
+
+                activepos[0] = GridPane.getColumnIndex(pic);
+                activepos[1] = GridPane.getRowIndex(pic);
+
+                showpossible(activepos);
+
+            });
+
+        }
+
+        for (int i = 0; i < 20; i++) {
+
+            possibleindicater.add(new Circle());
+
+            Circle temp = possibleindicater.get(i);
+
+            temp.setFill(Paint.valueOf("transparent"));
+            temp.setRadius(33);
+            temp.setStroke(Paint.valueOf("#57BD06"));
+            temp.setStrokeType(StrokeType.INSIDE);
+            temp.setStrokeWidth(4.0);
+            temp.scaleXProperty().bind(root.heightProperty().multiply(0.1 / 72));
+            temp.scaleYProperty().bind(root.heightProperty().multiply(0.1 / 72));
+            temp.setOpacity(0.5);
+
+            temp.setOnMouseClicked(event -> {
+
+                int[] pos = new int[2];
+
+                pos[0] = GridPane.getColumnIndex(temp);
+                pos[1] = GridPane.getRowIndex(temp);
+
+                move(activepos, pos, game[activepos[0]][activepos[1]]);
+
+            });
+
+        }
+
         AtomicReference<Double> x = new AtomicReference<>((double) 0);
         AtomicReference<Double> y = new AtomicReference<>((double) 0);
+
+        leftpane.setOnMousePressed(event -> {
+
+            x.set(event.getX());
+            y.set(event.getY());
+
+        });
+
+        leftpane.setOnMouseDragged(event -> {
+
+            chessmain.getStage().setX(event.getScreenX() - x.get());
+
+            chessmain.getStage().setY(event.getScreenY() - y.get());
+
+        });
 
         rightpane.setOnMousePressed(event -> {
 
@@ -283,13 +359,9 @@ public class chessboardController {
 
         rightpane.setOnMouseDragged(event -> {
 
-            chessmain.getStage().setX(event.getScreenX() - x.get() - 950);
+            chessmain.getStage().setX(event.getScreenX() - x.get() - gameboard.getWidth() - 300);
 
-            if(event.getScreenY() - y.get() < 0) {
-                chessmain.getStage().setY(0);
-            }else {
-                chessmain.getStage().setY(event.getScreenY() - y.get());
-            }
+            chessmain.getStage().setY(event.getScreenY() - y.get());
 
         });
 
@@ -305,13 +377,13 @@ public class chessboardController {
 
             File in = loadfc.showOpenDialog(loads);
 
-            if (in.getName().substring(in.getName().lastIndexOf(".")).equals(".chessboard")){
+            if (in.getName().substring(in.getName().lastIndexOf(".")).equals(".chessboard")) {
                 try {
-                    readmap(in,false);
+                    readmap(in, false);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-            }else if (in.getName().substring(in.getName().lastIndexOf(".")).equals(".chessmoveseq")){
+            } else if (in.getName().substring(in.getName().lastIndexOf(".")).equals(".chessmoveseq")) {
                 try {
                     readmoveseq(in);
                 } catch (IOException ex) {
@@ -333,13 +405,13 @@ public class chessboardController {
 
             File out = savefc.showSaveDialog(saves);
 
-            if (out.getName().substring(out.getName().lastIndexOf(".")).equals(".chessboard")){
+            if (out.getName().substring(out.getName().lastIndexOf(".")).equals(".chessboard")) {
                 try {
                     savemap(out);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-            }else if (out.getName().substring(out.getName().lastIndexOf(".")).equals(".chessmoveseq")){
+            } else if (out.getName().substring(out.getName().lastIndexOf(".")).equals(".chessmoveseq")) {
                 try {
                     savemoveseq(out);
                 } catch (IOException ex) {
@@ -371,11 +443,11 @@ public class chessboardController {
 
         });
 
-        readmap(new File("src/chinesechess/board/basicgame.chessboard"),true);
+        readmap(new File("src/chinesechess/board/basicgame.chessboard"), true);
 
     }
 
-    public void setmain(chessMain chessmain){
+    public void setmain(chessMain chessmain) {
         this.chessmain = chessmain;
     }
 
@@ -383,9 +455,634 @@ public class chessboardController {
 
     }
 
+    public void showpossible(int[] pos) {
+
+        char type;
+        char types;
+        boolean uend = false;
+        boolean dend = false;
+        boolean lend = false;
+        boolean rend = false;
+
+        List<int[]> possiblepos = new ArrayList<>();
+
+        if (dady == 'b') {
+            if (Character.isUpperCase(game[pos[0]][pos[1]])) {
+                types = 'C';
+            }else{
+                types = game[pos[0]][pos[1]];
+            }
+        } else if (dady == 'r'){
+            if (Character.isLowerCase(game[pos[0]][pos[1]])) {
+                types = 'c';
+            }else{
+                types = game[pos[0]][pos[1]];
+            }
+        }else{
+            types = game[pos[0]][pos[1]];
+        }
+
+        type = game[pos[0]][pos[1]];
+
+        switch (types) {
+            case 'G':
+
+                if (pos[1] - 1 >= 0 && !Character.isUpperCase(game[pos[0]][pos[1] - 1])) {
+
+                    possiblepos.add(new int[]{pos[0], pos[1] - 1});
+
+                }
+
+                if (pos[1] + 1 < 3 && !Character.isUpperCase(game[pos[0]][pos[1] + 1])) {
+
+                    possiblepos.add(new int[]{pos[0], pos[1] + 1});
+
+                }
+
+                if (pos[0] - 1 > 2 && !Character.isUpperCase(game[pos[0] - 1][pos[1]])) {
+
+                    possiblepos.add(new int[]{pos[0] - 1, pos[1]});
+
+                }
+
+                if (pos[0] + 1 < 6 && !Character.isUpperCase(game[pos[0] + 1][pos[1]])) {
+
+                    possiblepos.add(new int[]{pos[0] + 1, pos[1]});
+
+                }
+
+                break;
+
+            case 'g':
+
+                if (pos[1] - 1 > 6 && !Character.isLowerCase(game[pos[0]][pos[1] - 1])) {
+
+                    possiblepos.add(new int[]{pos[0], pos[1] - 1});
+
+                }
+
+                if (pos[1] + 1 < 10 && !Character.isLowerCase(game[pos[0]][pos[1] + 1])) {
+
+                    possiblepos.add(new int[]{pos[0], pos[1] + 1});
+
+                }
+
+                if (pos[0] - 1 > 2 && !Character.isLowerCase(game[pos[0] - 1][pos[1]])) {
+
+                    possiblepos.add(new int[]{pos[0] - 1, pos[1]});
+
+                }
+
+                if (pos[0] + 1 < 6 && !Character.isLowerCase(game[pos[0] + 1][pos[1]])) {
+
+                    possiblepos.add(new int[]{pos[0] + 1, pos[1]});
+
+                }
+
+                break;
+
+            case 'A':
+
+                if (pos[0] - 1 > 2 && pos[1] - 1 >= 0 && !Character.isUpperCase(game[pos[0] - 1][pos[1] - 1])) {
+
+                    possiblepos.add(new int[]{pos[0] - 1, pos[1] - 1});
+
+                }
+
+                if (pos[0] - 1 > 2 && pos[1] + 1 < 3 && !Character.isUpperCase(game[pos[0] - 1][pos[1] + 1])) {
+
+                    possiblepos.add(new int[]{pos[0] - 1, pos[1] + 1});
+
+                }
+
+                if (pos[0] + 1 < 6 && pos[1] - 1 >= 0 && !Character.isUpperCase(game[pos[0] + 1][pos[1] - 1])) {
+
+                    possiblepos.add(new int[]{pos[0] + 1, pos[1] - 1});
+
+                }
+
+                if (pos[0] + 1 < 6 && pos[1] + 1 < 3 && !Character.isUpperCase(game[pos[0] + 1][pos[1] + 1])) {
+
+                    possiblepos.add(new int[]{pos[0] + 1, pos[1] + 1});
+
+                }
+
+                break;
+
+            case 'a':
+
+                if (pos[0] - 1 > 2 && pos[1] - 1 > 6 && !Character.isLowerCase(game[pos[0] - 1][pos[1] - 1])) {
+
+                    possiblepos.add(new int[]{pos[0] - 1, pos[1] - 1});
+
+                }
+
+                if (pos[0] - 1 > 2 && pos[1] + 1 < 10 && !Character.isLowerCase(game[pos[0] - 1][pos[1] + 1])) {
+
+                    possiblepos.add(new int[]{pos[0] - 1, pos[1] + 1});
+
+                }
+
+                if (pos[0] + 1 < 6 && pos[1] - 1 > 6 && !Character.isLowerCase(game[pos[0] + 1][pos[1] - 1])) {
+
+                    possiblepos.add(new int[]{pos[0] + 1, pos[1] - 1});
+
+                }
+
+                if (pos[0] + 1 < 6 && pos[1] + 1 < 10 && !Character.isLowerCase(game[pos[0] + 1][pos[1] + 1])) {
+
+                    possiblepos.add(new int[]{pos[0] + 1, pos[1] + 1});
+
+                }
+
+                break;
+
+            case 'E':
+
+                if (pos[0] - 2 >= 0 && pos[1] - 2 >= 0 && !Character.isUpperCase(game[pos[0] - 2][pos[1] - 2])) {
+
+                    if (game[pos[0] - 1][pos[1] - 1] == '.') {
+                        possiblepos.add(new int[]{pos[0] - 2, pos[1] - 2});
+                    }
+
+                }
+
+                if (pos[0] - 2 >= 0 && pos[1] + 2 < 5 && !Character.isUpperCase(game[pos[0] - 2][pos[1] + 2])) {
+
+                    if (game[pos[0] - 1][pos[1] + 1] == '.') {
+                        possiblepos.add(new int[]{pos[0] - 2, pos[1] + 2});
+                    }
+
+                }
+
+                if (pos[0] + 2 < 9 && pos[1] - 2 >= 0 && !Character.isUpperCase(game[pos[0] + 2][pos[1] - 2])) {
+
+                    if (game[pos[0] + 1][pos[1] - 1] == '.') {
+                        possiblepos.add(new int[]{pos[0] + 2, pos[1] - 2});
+                    }
+
+                }
+
+                if (pos[0] + 2 < 9 && pos[1] + 2 < 5 && !Character.isUpperCase(game[pos[0] + 2][pos[1] + 2])) {
+
+                    if (game[pos[0] + 1][pos[1] + 1] == '.') {
+                        possiblepos.add(new int[]{pos[0] + 2, pos[1] + 2});
+                    }
+
+                }
+
+                break;
+
+            case 'e':
+
+                if (pos[0] - 2 >= 0 && pos[1] - 2 > 4 && !Character.isLowerCase(game[pos[0] - 2][pos[1] - 2])) {
+
+                    if (game[pos[0] - 1][pos[1] - 1] == '.') {
+                        possiblepos.add(new int[]{pos[0] - 2, pos[1] - 2});
+                    }
+
+                }
+
+                if (pos[0] - 2 >= 0 && pos[1] + 2 < 10 && !Character.isLowerCase(game[pos[0] - 2][pos[1] + 2])) {
+
+                    if (game[pos[0] - 1][pos[1] + 1] == '.') {
+                        possiblepos.add(new int[]{pos[0] - 2, pos[1] + 2});
+                    }
+
+                }
+
+                if (pos[0] + 2 < 9 && pos[1] - 2 > 4 && !Character.isLowerCase(game[pos[0] + 2][pos[1] - 2])) {
+
+                    if (game[pos[0] + 1][pos[1] - 1] == '.') {
+                        possiblepos.add(new int[]{pos[0] + 2, pos[1] - 2});
+                    }
+
+                }
+
+                if (pos[0] + 2 < 9 && pos[1] + 2 < 10 && !Character.isLowerCase(game[pos[0] + 2][pos[1] + 2])) {
+
+                    if (game[pos[0] + 1][pos[1] + 1] == '.') {
+                        possiblepos.add(new int[]{pos[0] + 2, pos[1] + 2});
+                    }
+
+                }
+
+                break;
+
+            case 'H':
+
+                if (pos[0] - 2 >= 0 && game[pos[0] - 1][pos[1]] == '.') {
+
+                    if (pos[1] - 1 >= 0 && !Character.isUpperCase(game[pos[0] - 2][pos[1] - 1])) {
+                        possiblepos.add(new int[]{pos[0] - 2, pos[1] - 1});
+                    }
+
+                    if (pos[1] + 1 < 10 && !Character.isUpperCase(game[pos[0] - 2][pos[1] + 1])) {
+                        possiblepos.add(new int[]{pos[0] - 2, pos[1] + 1});
+                    }
+
+                }
+
+                if (pos[0] + 2 < 9 && game[pos[0] + 1][pos[1]] == '.') {
+
+                    if (pos[1] - 1 >= 0 && !Character.isUpperCase(game[pos[0] + 2][pos[1] - 1])) {
+                        possiblepos.add(new int[]{pos[0] + 2, pos[1] - 1});
+                    }
+
+                    if (pos[1] + 1 < 10 && !Character.isUpperCase(game[pos[0] + 2][pos[1] + 1])) {
+                        possiblepos.add(new int[]{pos[0] + 2, pos[1] + 1});
+                    }
+
+                }
+
+                if (pos[1] - 2 >= 0 && game[pos[0]][pos[1] - 1] == '.') {
+
+                    if (pos[0] - 1 >= 0 && !Character.isUpperCase(game[pos[0] - 1][pos[1] - 2])) {
+                        possiblepos.add(new int[]{pos[0] - 1, pos[1] - 2});
+                    }
+
+                    if (pos[0] + 1 < 9 && !Character.isUpperCase(game[pos[0] + 1][pos[1] - 2])) {
+                        possiblepos.add(new int[]{pos[0] + 1, pos[1] - 2});
+                    }
+
+                }
+
+                if (pos[1] + 2 < 10 && game[pos[0]][pos[1] + 1] == '.') {
+
+                    if (pos[0] - 1 >= 0 && !Character.isUpperCase(game[pos[0] - 1][pos[1] + 2])) {
+                        possiblepos.add(new int[]{pos[0] - 1, pos[1] + 2});
+                    }
+
+                    if (pos[0] + 1 < 9 && !Character.isUpperCase(game[pos[0] + 1][pos[1] + 2])) {
+                        possiblepos.add(new int[]{pos[0] + 1, pos[1] + 2});
+                    }
+
+                }
+
+                break;
+
+            case 'h':
+
+                if (pos[0] - 2 >= 0 && game[pos[0] - 1][pos[1]] == '.') {
+
+                    if (pos[1] - 1 >= 0 && !Character.isLowerCase(game[pos[0] - 2][pos[1] - 1])) {
+                        possiblepos.add(new int[]{pos[0] - 2, pos[1] - 1});
+                    }
+
+                    if (pos[1] + 1 < 10 && !Character.isLowerCase(game[pos[0] - 2][pos[1] + 1])) {
+                        possiblepos.add(new int[]{pos[0] - 2, pos[1] + 1});
+                    }
+
+                }
+
+                if (pos[0] + 2 < 9 && game[pos[0] + 1][pos[1]] == '.') {
+
+                    if (pos[1] - 1 >= 0 && !Character.isLowerCase(game[pos[0] + 2][pos[1] - 1])) {
+                        possiblepos.add(new int[]{pos[0] + 2, pos[1] - 1});
+                    }
+
+                    if (pos[1] + 1 < 10 && !Character.isLowerCase(game[pos[0] + 2][pos[1] + 1])) {
+                        possiblepos.add(new int[]{pos[0] + 2, pos[1] + 1});
+                    }
+
+                }
+
+                if (pos[1] - 2 >= 0 && game[pos[0]][pos[1] - 1] == '.') {
+
+                    if (pos[0] - 1 >= 0 && !Character.isLowerCase(game[pos[0] - 1][pos[1] - 2])) {
+                        possiblepos.add(new int[]{pos[0] - 1, pos[1] - 2});
+                    }
+
+                    if (pos[0] + 1 < 9 && !Character.isLowerCase(game[pos[0] + 1][pos[1] - 2])) {
+                        possiblepos.add(new int[]{pos[0] + 1, pos[1] - 2});
+                    }
+
+                }
+
+                if (pos[1] + 2 < 10 && game[pos[0]][pos[1] + 1] == '.') {
+
+                    if (pos[0] - 1 >= 0 && !Character.isLowerCase(game[pos[0] - 1][pos[1] + 2])) {
+                        possiblepos.add(new int[]{pos[0] - 1, pos[1] + 2});
+                    }
+
+                    if (pos[0] + 1 < 9 && !Character.isLowerCase(game[pos[0] + 1][pos[1] + 2])) {
+                        possiblepos.add(new int[]{pos[0] + 1, pos[1] + 2});
+                    }
+
+                }
+
+                break;
+
+            case 'C':
+            case 'c':
+
+                uend = false;
+                dend = false;
+                lend = false;
+                rend = false;
+
+                for (int i = 1; i < 10; i++) {
+
+                    if ((pos[0] - i) >= 0 && !lend) {
+
+                        if (game[pos[0] - i][pos[1]] == '.') {
+                            possiblepos.add(new int[]{pos[0] - i, pos[1]});
+                        } else {
+
+                            if (Character.isUpperCase(type) != Character.isUpperCase(game[pos[0] - i][pos[1]])) {
+
+                                possiblepos.add(new int[]{pos[0] - i, pos[1]});
+
+                            }
+
+                            lend = true;
+
+                        }
+
+                    }
+
+                    if ((pos[0] + i) < 9 && !rend) {
+
+                        if (game[pos[0] + i][pos[1]] == '.') {
+                            possiblepos.add(new int[]{pos[0] + i, pos[1]});
+                        } else {
+
+                            if (Character.isUpperCase(type) ^ Character.isUpperCase(game[pos[0] + i][pos[1]])) {
+
+                                possiblepos.add(new int[]{pos[0] + i, pos[1]});
+
+                            }
+
+                            rend = true;
+
+                        }
+
+                    }
+
+                    if ((pos[1] - i) >= 0 && !uend) {
+
+                        if (game[pos[0]][pos[1] - i] == '.') {
+                            possiblepos.add(new int[]{pos[0], pos[1] - i});
+                        } else {
+
+                            if (Character.isUpperCase(type) ^ Character.isUpperCase(game[pos[0]][pos[1] - i])) {
+
+                                possiblepos.add(new int[]{pos[0], pos[1] - i});
+
+                            }
+
+                            uend = true;
+
+                        }
+
+                    }
+
+                    if ((pos[1] + i) < 10 && !dend) {
+
+                        if (game[pos[0]][pos[1] + i] == '.') {
+                            possiblepos.add(new int[]{pos[0], pos[1] + i});
+                        } else {
+
+                            if (Character.isUpperCase(type) ^ Character.isUpperCase(game[pos[0]][pos[1] + i])) {
+
+                                possiblepos.add(new int[]{pos[0], pos[1] + i});
+
+                            }
+
+                            dend = true;
+
+                        }
+
+                    }
+
+                }
+
+                break;
+
+            case 'N':
+            case 'n':
+
+                uend = false;
+                dend = false;
+                lend = false;
+                rend = false;
+
+                for (int i = 1; i < 10; i++) {
+
+                    if ((pos[0] - i) >= 0 && !lend) {
+
+                        if (game[pos[0] - i][pos[1]] == '.') {
+                            possiblepos.add(new int[]{pos[0] - i, pos[1]});
+                        } else {
+
+                            for (int j = 1; j < 10; j++) {
+                                if ((pos[0] - i - j) >= 0) {
+                                    if (game[pos[0] - i - j][pos[1]] != '.' && Character.isUpperCase(type) != Character.isUpperCase(game[pos[0] - i - j][pos[1]])) {
+
+                                        possiblepos.add(new int[]{pos[0] - i - j, pos[1]});
+                                        break;
+
+                                    }
+                                }
+                            }
+
+                            lend = true;
+
+                        }
+
+                    }
+
+                    if ((pos[0] + i) < 9 && !rend) {
+
+                        if (game[pos[0] + i][pos[1]] == '.') {
+                            possiblepos.add(new int[]{pos[0] + i, pos[1]});
+                        } else {
+
+                            for (int j = 1; j < 10; j++) {
+                                if ((pos[0] + i + j) < 9) {
+                                    if (game[pos[0] + i + j][pos[1]] != '.' && Character.isUpperCase(type) ^ Character.isUpperCase(game[pos[0] + i + j][pos[1]])) {
+
+                                        possiblepos.add(new int[]{pos[0] + i + j, pos[1]});
+                                        break;
+
+                                    }
+                                }
+                            }
+
+                            rend = true;
+
+                        }
+
+                    }
+
+                    if ((pos[1] - i) >= 0 && !uend) {
+
+                        if (game[pos[0]][pos[1] - i] == '.') {
+                            possiblepos.add(new int[]{pos[0], pos[1] - i});
+                        } else {
+
+                            for (int j = 1; j < 10; j++) {
+                                if ((pos[1] - i - j) >= 0) {
+                                    if (game[pos[0]][pos[1] - i - j] != '.' && Character.isUpperCase(type) ^ Character.isUpperCase(game[pos[0]][pos[1] - i - j])) {
+
+                                        possiblepos.add(new int[]{pos[0], pos[1] - i - j});
+                                        break;
+
+                                    }
+
+                                }
+                            }
+
+                            uend = true;
+
+                        }
+
+                    }
+
+                    if ((pos[1] + i) < 10 && !dend) {
+
+                        if (game[pos[0]][pos[1] + i] == '.') {
+                            possiblepos.add(new int[]{pos[0], pos[1] + i});
+                        } else {
+
+                            for (int j = 1; j < 10; j++) {
+                                if ((pos[1] + i + j) < 10) {
+                                    if (game[pos[0]][pos[1] + i + j] != '.' && Character.isUpperCase(type) ^ Character.isUpperCase(game[pos[0]][pos[1] + i + j])) {
+
+                                        possiblepos.add(new int[]{pos[0], pos[1] + i + j});
+                                        break;
+
+                                    }
+
+                                }
+                            }
+
+                            dend = true;
+
+                        }
+
+                    }
+
+                }
+
+                break;
+
+            case 'S':
+
+                if (pos[1] < 5) {
+
+                    if (!Character.isUpperCase(game[pos[0]][pos[1] + 1])) {
+
+                        possiblepos.add(new int[]{pos[0], pos[1] + 1});
+
+                    }
+
+                }
+
+                if (pos[1] > 4) {
+
+                    if (pos[1] + 1 < 10 && !Character.isUpperCase(game[pos[0]][pos[1] + 1])) {
+
+                        possiblepos.add(new int[]{pos[0], pos[1] + 1});
+
+                    }
+
+                    if (pos[0] - 1 >= 0 && !Character.isUpperCase(game[pos[0] - 1][pos[1]])) {
+
+                        possiblepos.add(new int[]{pos[0] - 1, pos[1]});
+
+                    }
+
+                    if (pos[0] + 1 < 9 && !Character.isUpperCase(game[pos[0] + 1][pos[1]])) {
+
+                        possiblepos.add(new int[]{pos[0] + 1, pos[1]});
+
+                    }
+                }
+
+                break;
+
+            case 's':
+
+                if (pos[1] > 4) {
+
+                    if (!Character.isLowerCase(game[pos[0]][pos[1] - 1])) {
+
+                        possiblepos.add(new int[]{pos[0], pos[1] - 1});
+
+                    }
+
+                }
+
+                if (pos[1] < 5) {
+                    if (pos[1] - 1 >= 0 && !Character.isLowerCase(game[pos[0]][pos[1] - 1])) {
+
+                        possiblepos.add(new int[]{pos[0], pos[1] - 1});
+
+                    }
+
+                    if (pos[0] - 1 >= 0 && !Character.isLowerCase(game[pos[0] - 1][pos[1]])) {
+
+                        possiblepos.add(new int[]{pos[0] - 1, pos[1]});
+
+                    }
+
+                    if (pos[0] + 1 < 9 && !Character.isLowerCase(game[pos[0] + 1][pos[1]])) {
+
+                        possiblepos.add(new int[]{pos[0] + 1, pos[1]});
+
+                    }
+                }
+
+                break;
+
+        }
+
+        fillpossible(possiblepos);
+
+        possiblepos.clear();
+
+    }
+
+    public void fillpossible(List<int[]> pos) {
+
+        int i = 0;
+
+        for (int[] poss : pos) {
+            try {
+                gameboard.getChildren().add(possibleindicater.get(i));
+            } catch (IllegalArgumentException ignore) {
+
+            }
+            GridPane.setValignment(possibleindicater.get(i), VPos.CENTER);
+            GridPane.setHalignment(possibleindicater.get(i), HPos.CENTER);
+
+            GridPane.setConstraints(possibleindicater.get(i), poss[0], poss[1]);
+
+            i++;
+
+        }
+
+    }
+
+    public void recallpossible() {
+
+        for (Circle c : possibleindicater) {
+
+            try {
+
+                gameboard.getChildren().removeAll(c);
+
+            } catch (IllegalArgumentException ignore) {
+
+            }
+
+        }
+
+    }
+
     public void initgame() {
 
-        
 
         gamelog.clear();
         deads.clear();
@@ -408,10 +1105,10 @@ public class chessboardController {
 
     }
 
-    public void regret(){
+    public void regret() {
 
-        if (totalsteps==0){
-            showalert("已经回到开局状态","退无可退");
+        if (totalsteps == 0||gamelog.size() == 0) {
+            showalert("已经回到开局状态", "退无可退");
             return;
         }
 
@@ -419,7 +1116,7 @@ public class chessboardController {
         int[] posb = new int[2];
         char type;
 
-        String str = gamelog.get(gamelog.size()-1);
+        String str = gamelog.get(gamelog.size() - 1);
 
         posa[0] = str.charAt(4) - 48;
         posa[1] = str.charAt(6) - 48;
@@ -427,146 +1124,178 @@ public class chessboardController {
         posb[1] = str.charAt(2) - 48;
         type = game[posa[0]][posa[1]];
 
-        move(posa,posb,type);
+        nextturn();
+
+        move(posa, posb, type);
         resurrect(posa);
 
-        gamelog.remove(gamelog.size()-2);
-        gamelog.remove(gamelog.size()-1);
-        totalsteps-=2;
+        nextturn();
+
+        gamelog.remove(gamelog.size() - 1);
+        gamelog.remove(gamelog.size() - 1);
+        totalsteps -= 2;
 
     }
 
-    public void resurrect(int[] pos){
+    public void resurrect(int[] pos) {
 
-        for (int i = deads.size()-1; i >= 0; i--) {
-            if (pos[0]==Integer.parseInt(String.valueOf(deads.get(i).charAt(0)))&&pos[1]==Integer.parseInt(String.valueOf(deads.get(i).charAt(2)))){
+        for (int i = deads.size() - 1; i >= 0; i--) {
+            if (pos[0] == Integer.parseInt(String.valueOf(deads.get(i).charAt(0))) && pos[1] == Integer.parseInt(String.valueOf(deads.get(i).charAt(2)))) {
                 switch (deads.get(i).charAt(4)) {
                     case 'G':
                         for (Group piece : G) {
                             try {
                                 gameboard.getChildren().add(piece);
                                 GridPane.setConstraints(piece, pos[0], pos[1]);
+                                game[pos[0]][pos[1]] = 'G';
                                 break;
                             } catch (IllegalArgumentException ignored) {
                             }
                         }
+                        break;
                     case 'A':
                         for (Group piece : A) {
                             try {
                                 gameboard.getChildren().add(piece);
                                 GridPane.setConstraints(piece, pos[0], pos[1]);
+                                game[pos[0]][pos[1]] = 'A';
                                 break;
                             } catch (IllegalArgumentException ignored) {
                             }
                         }
+                        break;
                     case 'E':
                         for (Group piece : E) {
                             try {
                                 gameboard.getChildren().add(piece);
                                 GridPane.setConstraints(piece, pos[0], pos[1]);
+                                game[pos[0]][pos[1]] = 'E';
                                 break;
                             } catch (IllegalArgumentException ignored) {
                             }
                         }
+                        break;
                     case 'H':
                         for (Group piece : H) {
                             try {
                                 gameboard.getChildren().add(piece);
                                 GridPane.setConstraints(piece, pos[0], pos[1]);
+                                game[pos[0]][pos[1]] = 'H';
                                 break;
                             } catch (IllegalArgumentException ignored) {
                             }
                         }
+                        break;
                     case 'C':
                         for (Group piece : C) {
                             try {
                                 gameboard.getChildren().add(piece);
                                 GridPane.setConstraints(piece, pos[0], pos[1]);
+                                game[pos[0]][pos[1]] = 'C';
                                 break;
                             } catch (IllegalArgumentException ignored) {
                             }
                         }
+                        break;
                     case 'N':
                         for (Group piece : N) {
                             try {
                                 gameboard.getChildren().add(piece);
                                 GridPane.setConstraints(piece, pos[0], pos[1]);
+                                game[pos[0]][pos[1]] = 'N';
                                 break;
                             } catch (IllegalArgumentException ignored) {
                             }
                         }
+                        break;
                     case 'S':
                         for (Group piece : S) {
                             try {
                                 gameboard.getChildren().add(piece);
                                 GridPane.setConstraints(piece, pos[0], pos[1]);
+                                game[pos[0]][pos[1]] = 'S';
                                 break;
                             } catch (IllegalArgumentException ignored) {
                             }
                         }
+                        break;
                     case 'g':
                         for (Group piece : g) {
                             try {
                                 gameboard.getChildren().add(piece);
                                 GridPane.setConstraints(piece, pos[0], pos[1]);
+                                game[pos[0]][pos[1]] = 'g';
                                 break;
                             } catch (IllegalArgumentException ignored) {
                             }
                         }
+                        break;
                     case 'a':
                         for (Group piece : a) {
                             try {
                                 gameboard.getChildren().add(piece);
                                 GridPane.setConstraints(piece, pos[0], pos[1]);
+                                game[pos[0]][pos[1]] = 'a';
                                 break;
                             } catch (IllegalArgumentException ignored) {
                             }
                         }
+                        break;
                     case 'e':
                         for (Group piece : e) {
                             try {
                                 gameboard.getChildren().add(piece);
                                 GridPane.setConstraints(piece, pos[0], pos[1]);
+                                game[pos[0]][pos[1]] = 'e';
                                 break;
                             } catch (IllegalArgumentException ignored) {
                             }
                         }
+                        break;
                     case 'h':
                         for (Group piece : h) {
                             try {
                                 gameboard.getChildren().add(piece);
                                 GridPane.setConstraints(piece, pos[0], pos[1]);
+                                game[pos[0]][pos[1]] = 'h';
                                 break;
                             } catch (IllegalArgumentException ignored) {
                             }
                         }
+                        break;
                     case 'c':
                         for (Group piece : c) {
                             try {
                                 gameboard.getChildren().add(piece);
                                 GridPane.setConstraints(piece, pos[0], pos[1]);
+                                game[pos[0]][pos[1]] = 'c';
                                 break;
                             } catch (IllegalArgumentException ignored) {
                             }
                         }
+                        break;
                     case 'n':
                         for (Group piece : n) {
                             try {
                                 gameboard.getChildren().add(piece);
                                 GridPane.setConstraints(piece, pos[0], pos[1]);
+                                game[pos[0]][pos[1]] = 'n';
                                 break;
                             } catch (IllegalArgumentException ignored) {
                             }
                         }
+                        break;
                     case 's':
                         for (Group piece : s) {
                             try {
                                 gameboard.getChildren().add(piece);
                                 GridPane.setConstraints(piece, pos[0], pos[1]);
+                                game[pos[0]][pos[1]] = 's';
                                 break;
                             } catch (IllegalArgumentException ignored) {
                             }
                         }
+                        break;
                 }
                 deads.remove(i);
                 break;
@@ -625,7 +1354,7 @@ public class chessboardController {
 
     }
 
-    public void readmap(File gamemap,boolean on) throws IOException {
+    public void readmap(File gamemap, boolean on) throws IOException {
 
         FileReader fr = new FileReader(gamemap);
 
@@ -794,7 +1523,7 @@ public class chessboardController {
                     showalert("不要往棋盘上放奇怪的东西", filename, line + errorline - 10);
                     return;
                 case '0':
-                    readmap(new File("src/chinesechess/board/basicgame.chessboard"),false);
+                    readmap(new File("src/chinesechess/board/basicgame.chessboard"), false);
                     return;
             }
         }
@@ -804,13 +1533,13 @@ public class chessboardController {
         if (!on) {
             showalert("棋盘数据读取成功");
         }
-        
+
         fr.close();
         br.close();
 
     }
 
-    public void savemoveseq(File site) throws IOException{
+    public void savemoveseq(File site) throws IOException {
 
         int num = 0;
 
@@ -823,11 +1552,11 @@ public class chessboardController {
 
         OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
 
-        osw.write("@TOTAL_STEP="+totalsteps+"\n");
+        osw.write("@TOTAL_STEP=" + totalsteps + "\n");
 
         osw.write("@@\n\n");
 
-        for (String str:gamelog) {
+        for (String str : gamelog) {
             num++;
 
             ax = Integer.parseInt(String.valueOf(str.charAt(0)));
@@ -835,10 +1564,10 @@ public class chessboardController {
             bx = Integer.parseInt(String.valueOf(str.charAt(4)));
             by = Integer.parseInt(String.valueOf(str.charAt(6)));
 
-            if (num%2==1) {
-                osw.write((9-ax)+" "+(10-ay)+" "+(9-bx)+" "+(10-by)+"\n");
-            }else{
-                osw.write((ax + 1)+" "+(ay + 1)+" "+(bx + 1)+" "+(by + 1)+"\n");
+            if (num % 2 == 1) {
+                osw.write((9 - ax) + " " + (10 - ay) + " " + (9 - bx) + " " + (10 - by) + "\n");
+            } else {
+                osw.write((ax + 1) + " " + (ay + 1) + " " + (bx + 1) + " " + (by + 1) + "\n");
             }
         }
 
@@ -852,7 +1581,7 @@ public class chessboardController {
 
     }
 
-    public void readmoveseq(File gameseq) throws IOException{
+    public void readmoveseq(File gameseq) throws IOException {
 
         FileReader fr = new FileReader(gameseq);
 
@@ -879,22 +1608,22 @@ public class chessboardController {
             line++;
             str = str.split("#")[0];
 
-            if (!stepstart&&!mataend&&str.charAt(0)=='@'){
+            if (!stepstart && !mataend && str.charAt(0) == '@') {
 
                 str = str.substring(1);
 
-                if (str.startsWith("TOTAL_STEP=")){
+                if (str.startsWith("TOTAL_STEP=")) {
                     try {
                         stepcatch = Integer.parseInt(str.substring(11));
                         totalstepdata = true;
-                    }catch (ArrayIndexOutOfBoundsException ae){
-                        showalert("步数数据出错",filename,line);
+                    } catch (ArrayIndexOutOfBoundsException ae) {
+                        showalert("步数数据出错", filename, line);
                         return;
                     }
                     continue;
                 }
 
-                if (str.equals("@")){
+                if (str.equals("@")) {
                     mataend = true;
                     continue;
                 }
@@ -923,33 +1652,33 @@ public class chessboardController {
                     ay = Integer.parseInt(String.valueOf(str.charAt(2)));
                     bx = Integer.parseInt(String.valueOf(str.charAt(4)));
                     by = Integer.parseInt(String.valueOf(str.charAt(6)));
-                }catch (Exception ae){
-                    showalert("棋谱数据异常",filename,line);
+                } catch (Exception ae) {
+                    showalert("棋谱数据异常", filename, line);
                     return;
                 }
 
-                if (num%2==1) {
-                    startpos[0] = 9- ax;
-                    startpos[1] = 10- ay;
-                    endpos[0] = 9- bx;
-                    endpos[1] = 10- by;
-                }else{
-                    startpos[0] = ax -1;
-                    startpos[1] = ay -1;
-                    endpos[0] = bx -1;
-                    endpos[1] = by -1;
+                if (num % 2 == 1) {
+                    startpos[0] = 9 - ax;
+                    startpos[1] = 10 - ay;
+                    endpos[0] = 9 - bx;
+                    endpos[1] = 10 - by;
+                } else {
+                    startpos[0] = ax - 1;
+                    startpos[1] = ay - 1;
+                    endpos[0] = bx - 1;
+                    endpos[1] = by - 1;
                 }
 
-                if (startpos[0]>8||endpos[0]>8||startpos[1]>9||endpos[1]>9||startpos[0]<0||endpos[0]<0||startpos[1]<0||endpos[1]<0){
+                if (startpos[0] > 8 || endpos[0] > 8 || startpos[1] > 9 || endpos[1] > 9 || startpos[0] < 0 || endpos[0] < 0 || startpos[1] < 0 || endpos[1] < 0) {
 
-                    showalert("位置在边界外",filename,line);
+                    showalert("位置在边界外", filename, line);
                     return;
 
                 }
 
                 target = game[startpos[0]][startpos[1]];
                 if (num % 2 == 1) {
-                    if (Character.isLowerCase(game[endpos[0]][endpos[1]])){
+                    if (Character.isLowerCase(game[endpos[0]][endpos[1]])) {
                         showalert("目标位置存在本方棋子", filename, line);
                         return;
                     }
@@ -960,7 +1689,7 @@ public class chessboardController {
                         return;
                     }
                 } else {
-                    if (Character.isUpperCase(game[endpos[0]][endpos[1]])){
+                    if (Character.isUpperCase(game[endpos[0]][endpos[1]])) {
                         showalert("目标位置存在本方棋子", filename, line);
                         return;
                     }
@@ -975,15 +1704,29 @@ public class chessboardController {
 
         }
 
-        if (num==stepcatch){
+        if (num == stepcatch) {
             showalert("棋谱数据读取成功");
             loglist.appendText("棋谱数据读取成功\n");
-        }else {
-            showalert("TOTAL_STEP数据与实际不符",filename,line);
+        } else {
+            showalert("TOTAL_STEP数据与实际不符", filename, line);
         }
 
         fr.close();
         br.close();
+
+    }
+
+    public void nextturn() {
+
+        if (turnshower.getText().equals("Black Turn")) {
+            turnshower.setText("Red Turn");
+            turnshower.setFill(Paint.valueOf("#F09595"));
+            showerborder.setStyle("-fx-border-color: #F09595; -fx-border-insets: 5; -fx-border-width: 5;");
+        } else if (turnshower.getText().equals("Red Turn")) {
+            turnshower.setText("Black Turn");
+            turnshower.setFill(Paint.valueOf("#393E46"));
+            showerborder.setStyle("-fx-border-color: #393E46; -fx-border-insets: 5; -fx-border-width: 5;");
+        }
 
     }
 
@@ -1197,6 +1940,12 @@ public class chessboardController {
 
     }
 
+    public BorderPane getRoot() {
+
+        return root;
+
+    }
+
     public void showalert(String content, String head) {
 
         Alert gamealert = new Alert(Alert.AlertType.WARNING);
@@ -1218,20 +1967,6 @@ public class chessboardController {
         gamealert.setContentText("您的" + content);
 
         gamealert.show();
-
-    }
-
-    public void showalert(String content,boolean on) {
-
-        Alert gamealert = new Alert(Alert.AlertType.CONFIRMATION);
-
-        gamealert.setHeaderText(content);
-
-        gamealert.setContentText("您的" + content);
-
-        gamealert.show();
-
-        gamealert.close();
 
     }
 
@@ -1259,27 +1994,80 @@ public class chessboardController {
 
     }
 
+    public void winning(char type){
+
+        Alert gamealert = new Alert(Alert.AlertType.CONFIRMATION);
+
+        Image image = new Image("/chinesechess/resources/42.png");
+
+        ImageView imageView = new ImageView();
+
+        imageView.setImage(image);
+
+        gamealert.setGraphic(imageView);
+
+        gamealert.setTitle("游戏结束");
+
+        if (type == 'r') {
+            gamealert.setHeaderText("黑方胜");
+        }else if (type == 'b'){
+            gamealert.setHeaderText("红方胜");
+        }
+
+        Button restart = (Button)gamealert.getDialogPane().lookupButton(ButtonType.OK);
+        Button exit = (Button)gamealert.getDialogPane().lookupButton(ButtonType.CANCEL);
+
+        restart.setText("再来一局！");
+        exit.setText("退出游戏");
+
+        restart.setOnAction(event -> {
+
+            try {
+                readmap(new File("src/chinesechess/board/basicgame.chessboard"), false);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        });
+
+        exit.setOnAction(event -> {
+
+            Platform.exit();
+
+        });
+
+        gamealert.setContentText("您可以选择：");
+
+        gamealert.show();
+
+    }
+
     public void kill(int[] pos, char type) {
 
-        deads.add(pos[0]+" "+pos[1]+" "+type);
+        deads.add(pos[0] + " " + pos[1] + " " + type);
 
         switch (type) {
             case 'G':
-                for (Group piece:G) {
-                    try {
-                        if (GridPane.getColumnIndex(piece) == pos[0] && GridPane.getRowIndex(piece) == pos[1]) {
-                            try {
-                                bdead.getChildren().add(piece);
-                            } catch (IllegalArgumentException ignored) {
+                if (baba == 'b') {
+                    for (Group piece : G) {
+                        try {
+                            if (GridPane.getColumnIndex(piece) == pos[0] && GridPane.getRowIndex(piece) == pos[1]) {
+                                try {
+                                    bdead.getChildren().add(piece);
+                                } catch (IllegalArgumentException ignored) {
+                                }
+                                return;
                             }
-                            return;
-                        }
-                    } catch (Exception ignored) {
+                        } catch (Exception ignored) {
 
+                        }
                     }
+                }else{
+                    winning('b');
+                    return;
                 }
             case 'A':
-                for (Group piece:A) {
+                for (Group piece : A) {
                     try {
                         if (GridPane.getColumnIndex(piece) == pos[0] && GridPane.getRowIndex(piece) == pos[1]) {
                             try {
@@ -1293,7 +2081,7 @@ public class chessboardController {
                     }
                 }
             case 'E':
-                for (Group piece:E) {
+                for (Group piece : E) {
                     try {
                         if (GridPane.getColumnIndex(piece) == pos[0] && GridPane.getRowIndex(piece) == pos[1]) {
                             try {
@@ -1307,7 +2095,7 @@ public class chessboardController {
                     }
                 }
             case 'H':
-                for (Group piece:H) {
+                for (Group piece : H) {
                     try {
                         if (GridPane.getColumnIndex(piece) == pos[0] && GridPane.getRowIndex(piece) == pos[1]) {
                             try {
@@ -1321,7 +2109,7 @@ public class chessboardController {
                     }
                 }
             case 'C':
-                for (Group piece:C) {
+                for (Group piece : C) {
                     try {
                         if (GridPane.getColumnIndex(piece) == pos[0] && GridPane.getRowIndex(piece) == pos[1]) {
                             try {
@@ -1335,7 +2123,7 @@ public class chessboardController {
                     }
                 }
             case 'N':
-                for (Group piece:N) {
+                for (Group piece : N) {
                     try {
                         if (GridPane.getColumnIndex(piece) == pos[0] && GridPane.getRowIndex(piece) == pos[1]) {
                             try {
@@ -1349,7 +2137,7 @@ public class chessboardController {
                     }
                 }
             case 'S':
-                for (Group piece:S) {
+                for (Group piece : S) {
                     try {
                         if (GridPane.getColumnIndex(piece) == pos[0] && GridPane.getRowIndex(piece) == pos[1]) {
                             try {
@@ -1363,21 +2151,25 @@ public class chessboardController {
                     }
                 }
             case 'g':
-                for (Group piece:g) {
-                    try {
-                        if (GridPane.getColumnIndex(piece) == pos[0] && GridPane.getRowIndex(piece) == pos[1]) {
-                            try {
-                                rdead.getChildren().add(piece);
-                            } catch (IllegalArgumentException ignored) {
+                if (baba == 'r') {
+                    for (Group piece : g) {
+                        try {
+                            if (GridPane.getColumnIndex(piece) == pos[0] && GridPane.getRowIndex(piece) == pos[1]) {
+                                try {
+                                    rdead.getChildren().add(piece);
+                                } catch (IllegalArgumentException ignored) {
+                                }
+                                return;
                             }
-                            return;
-                        }
-                    } catch (Exception ignored) {
+                        } catch (Exception ignored) {
 
+                        }
                     }
+                }else{
+                    winning('a');
                 }
             case 'a':
-                for (Group piece:a) {
+                for (Group piece : a) {
                     try {
                         if (GridPane.getColumnIndex(piece) == pos[0] && GridPane.getRowIndex(piece) == pos[1]) {
                             try {
@@ -1391,7 +2183,7 @@ public class chessboardController {
                     }
                 }
             case 'e':
-                for (Group piece:e) {
+                for (Group piece : e) {
                     try {
                         if (GridPane.getColumnIndex(piece) == pos[0] && GridPane.getRowIndex(piece) == pos[1]) {
                             try {
@@ -1405,7 +2197,7 @@ public class chessboardController {
                     }
                 }
             case 'h':
-                for (Group piece:h) {
+                for (Group piece : h) {
                     try {
                         if (GridPane.getColumnIndex(piece) == pos[0] && GridPane.getRowIndex(piece) == pos[1]) {
                             try {
@@ -1419,7 +2211,7 @@ public class chessboardController {
                     }
                 }
             case 'c':
-                for (Group piece:c) {
+                for (Group piece : c) {
                     try {
                         if (GridPane.getColumnIndex(piece) == pos[0] && GridPane.getRowIndex(piece) == pos[1]) {
                             try {
@@ -1433,7 +2225,7 @@ public class chessboardController {
                     }
                 }
             case 'n':
-                for (Group piece:n) {
+                for (Group piece : n) {
                     try {
                         if (GridPane.getColumnIndex(piece) == pos[0] && GridPane.getRowIndex(piece) == pos[1]) {
                             try {
@@ -1447,7 +2239,7 @@ public class chessboardController {
                     }
                 }
             case 's':
-                for (Group piece:s) {
+                for (Group piece : s) {
                     try {
                         if (GridPane.getColumnIndex(piece) == pos[0] && GridPane.getRowIndex(piece) == pos[1]) {
                             try {
@@ -1466,19 +2258,34 @@ public class chessboardController {
 
     public void move(int[] posa, int[] posb, char type) {
 
-        game[posa[0]][posa[1]] = game[posb[0]][posb[1]];
-        if (game[posb[0]][posb[1]] != '.'){
-            kill(posb,game[posb[0]][posb[1]]);
+        if (turnshower.getText().equals("Black Turn") && Character.isLowerCase(type)) {
+            return;
         }
+
+        if (turnshower.getText().equals("Red Turn") && Character.isUpperCase(type)) {
+            return;
+        }
+
+        recallpossible();
+
+        if (game[posb[0]][posb[1]] != '.') {
+            kill(posb, game[posb[0]][posb[1]]);
+            game[posb[0]][posb[1]] = '.';
+        }
+
+        game[posa[0]][posa[1]] = game[posb[0]][posb[1]];
+
         game[posb[0]][posb[1]] = type;
 
-        gamelog.add(posa[0]+" "+posa[1]+" "+posb[0]+" "+posb[1]);
+        gamelog.add(posa[0] + " " + posa[1] + " " + posb[0] + " " + posb[1]);
 
         totalsteps++;
 
+        nextturn();
+
         switch (type) {
             case 'G':
-                for (Group piece:G) {
+                for (Group piece : G) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
                             GridPane.setConstraints(piece, posb[0], posb[1]);
@@ -1488,8 +2295,9 @@ public class chessboardController {
 
                     }
                 }
+                break;
             case 'A':
-                for (Group piece:A) {
+                for (Group piece : A) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
                             GridPane.setConstraints(piece, posb[0], posb[1]);
@@ -1499,8 +2307,9 @@ public class chessboardController {
 
                     }
                 }
+                break;
             case 'E':
-                for (Group piece:E) {
+                for (Group piece : E) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
                             GridPane.setConstraints(piece, posb[0], posb[1]);
@@ -1510,8 +2319,9 @@ public class chessboardController {
 
                     }
                 }
+                break;
             case 'H':
-                for (Group piece:H) {
+                for (Group piece : H) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
                             GridPane.setConstraints(piece, posb[0], posb[1]);
@@ -1521,8 +2331,9 @@ public class chessboardController {
 
                     }
                 }
+                break;
             case 'C':
-                for (Group piece:C) {
+                for (Group piece : C) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
                             GridPane.setConstraints(piece, posb[0], posb[1]);
@@ -1532,8 +2343,9 @@ public class chessboardController {
 
                     }
                 }
+                break;
             case 'N':
-                for (Group piece:N) {
+                for (Group piece : N) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
                             GridPane.setConstraints(piece, posb[0], posb[1]);
@@ -1543,8 +2355,9 @@ public class chessboardController {
 
                     }
                 }
+                break;
             case 'S':
-                for (Group piece:S) {
+                for (Group piece : S) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
                             GridPane.setConstraints(piece, posb[0], posb[1]);
@@ -1554,8 +2367,9 @@ public class chessboardController {
 
                     }
                 }
+                break;
             case 'g':
-                for (Group piece:g) {
+                for (Group piece : g) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
                             GridPane.setConstraints(piece, posb[0], posb[1]);
@@ -1565,8 +2379,9 @@ public class chessboardController {
 
                     }
                 }
+                break;
             case 'a':
-                for (Group piece:a) {
+                for (Group piece : a) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
                             GridPane.setConstraints(piece, posb[0], posb[1]);
@@ -1576,8 +2391,9 @@ public class chessboardController {
 
                     }
                 }
+                break;
             case 'e':
-                for (Group piece:e) {
+                for (Group piece : e) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
                             GridPane.setConstraints(piece, posb[0], posb[1]);
@@ -1587,8 +2403,9 @@ public class chessboardController {
 
                     }
                 }
+                break;
             case 'h':
-                for (Group piece:h) {
+                for (Group piece : h) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
                             GridPane.setConstraints(piece, posb[0], posb[1]);
@@ -1598,8 +2415,9 @@ public class chessboardController {
 
                     }
                 }
+                break;
             case 'c':
-                for (Group piece:c) {
+                for (Group piece : c) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
                             GridPane.setConstraints(piece, posb[0], posb[1]);
@@ -1609,8 +2427,9 @@ public class chessboardController {
 
                     }
                 }
+                break;
             case 'n':
-                for (Group piece:n) {
+                for (Group piece : n) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
                             GridPane.setConstraints(piece, posb[0], posb[1]);
@@ -1620,8 +2439,9 @@ public class chessboardController {
 
                     }
                 }
+                break;
             case 's':
-                for (Group piece:s) {
+                for (Group piece : s) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
                             GridPane.setConstraints(piece, posb[0], posb[1]);
@@ -1631,6 +2451,7 @@ public class chessboardController {
 
                     }
                 }
+                break;
         }
 
     }

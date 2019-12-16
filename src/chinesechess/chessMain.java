@@ -5,7 +5,6 @@ import chinesechess.mainview.mainviewController;
 import chinesechess.settings.settingviewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -19,7 +18,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
 
 public class chessMain extends Application {
 
@@ -28,6 +26,7 @@ public class chessMain extends Application {
     public boolean borderon = false;
     public boolean opton = true;
     public boolean fullon = false;
+    public boolean minion = false;
     public double musicvolum;
     public double sfxvolum;
     public Media bgm;
@@ -40,18 +39,27 @@ public class chessMain extends Application {
     @Override
     public void start(Stage primarystage) throws Exception{
 
-        readconfig();
+            readconfig();
 
-        bgmplay = new MediaPlayer(bgm);
+        try {
 
-        bgmplay.setVolume(musicvolum);
+            bgmplay = new MediaPlayer(bgm);
 
-        bgmplay.setAutoPlay(true);
+            bgmplay.setVolume(musicvolum);
 
+            bgmplay.setAutoPlay(true);
+
+            bgmplay.setCycleCount(-1);
+
+        }catch (NullPointerException ne){
+
+            bgmplay = null;
+
+        }
         stage = primarystage;
         stage.setTitle("Chinese chess 42");
         stage.getIcons().clear();
-        stage.getIcons().add(new Image("/chinesechess/images/42.png"));
+        stage.getIcons().add(new Image("/chinesechess/resources/42.png"));
         if (!borderon) {
             stage.initStyle(StageStyle.TRANSPARENT);
         }
@@ -87,13 +95,19 @@ public class chessMain extends Application {
 
         if (fullon){
             stage.setFullScreen(true);
-            stage.setMinHeight(1080);
-            stage.setMinWidth(1920);
+//            stage.setMinHeight(1080);
+//            stage.setMinWidth(1920);
         }
 
         if (borderon) {
             stage.setResizable(true);
         }
+
+        if (minion) {
+            cc.getRoot().setScaleX(0.8);
+            cc.getRoot().setScaleY(0.8);
+        }
+
     }
 
     public void showsettingview() throws IOException {
@@ -121,13 +135,19 @@ public class chessMain extends Application {
 
         stage.setScene(scene);
 
-        bgmplay.stop();
+        if (bgmplay != null) {
+            bgmplay.stop();
+        }
 
-        bgmplay = new MediaPlayer(bgm);
+        if (bgm != null) {
+            bgmplay = new MediaPlayer(bgm);
 
-        bgmplay.setVolume(musicvolum);
+            bgmplay.setVolume(musicvolum);
 
-        bgmplay.setAutoPlay(true);
+            bgmplay.setAutoPlay(true);
+
+            bgmplay.setCycleCount(-1);
+        }
 
         return loader.getController();
 
@@ -168,6 +188,14 @@ public class chessMain extends Application {
         str = br.readLine();
 
         if (str.equals("true")){
+            minion = true;
+        }else if (str.equals("false")){
+            minion = false;
+        }
+
+        str = br.readLine();
+
+        if (str.equals("true")){
             autosaveon = true;
         }else if (str.equals("false")){
             autosaveon = false;
@@ -191,10 +219,16 @@ public class chessMain extends Application {
 
         str = br.readLine();
 
-        File musi =new File(str);
+        try {
 
-        bgm = new Media(musi.toURI().toString());
+            File musi = new File(str);
 
+            bgm = new Media(musi.toURI().toString());
+        }catch (Exception e){
+
+            bgm = null;
+
+        }
         str = br.readLine();
 
         savedic = new File(str);

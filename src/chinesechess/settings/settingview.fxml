@@ -31,13 +31,16 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="198.0" layoutY="58.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="边框" textAlignment="CENTER" />
-                        <CheckBox fx:id="bordercheck" layoutX="338.0" layoutY="63.0" mnemonicParsing="false" />
-                        <Button layoutX="198.0" layoutY="111.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="透明化" textAlignment="CENTER" />
-                        <CheckBox fx:id="optcheck" layoutX="338.0" layoutY="116.0" mnemonicParsing="false" />
-                        <Button layoutX="198.0" layoutY="173.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="全屏" textAlignment="CENTER" />
-                        <CheckBox fx:id="fullcheck" layoutX="338.0" layoutY="178.0" mnemonicParsing="false" />
-                        <Button layoutX="246.0" layoutY="239.0" mnemonicParsing="false" text="重启游戏后生效" />
+                        <Button layoutX="197.0" layoutY="29.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="边框" textAlignment="CENTER" />
+                        <CheckBox fx:id="bordercheck" layoutX="337.0" layoutY="34.0" mnemonicParsing="false" />
+                        <Button layoutX="197.0" layoutY="82.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="透明化" textAlignment="CENTER" />
+                        <CheckBox fx:id="optcheck" layoutX="337.0" layoutY="87.0" mnemonicParsing="false" />
+                        <Button layoutX="197.0" layoutY="167.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="全屏" textAlignment="CENTER" />
+                        <CheckBox fx:id="fullcheck" layoutX="337.0" layoutY="172.0" mnemonicParsing="false" />
+                        <Button layoutX="221.0" layoutY="124.0" mnemonicParsing="false" text="以上设置重启游戏后生效" />
+                        <Button layoutX="197.0" layoutY="220.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="小屏优化" textAlignment="CENTER" />
+                        <CheckBox fx:id="minicheck" layoutX="337.0" layoutY="227.0" mnemonicParsing="false" />
+                        <Button layoutX="103.0" layoutY="267.0" mnemonicParsing="false" text="为13寸以下屏幕优化显示，开启可能导致布局混乱，推荐开启全屏代替" />
                      </children></AnchorPane>
             </content>
           </Tab>

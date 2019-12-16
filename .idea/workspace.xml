@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Looks much better.&#10;什么叫现代艺术（战术后仰）">
-      <change afterPath="$PROJECT_DIR$/src/chinesechess/images/tita.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chinesechess/images/wtf.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chinesechess/mainview/mainview.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chinesechess/mainview/mainviewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chinesechess/select/selectview.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chinesechess/select/selectviewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chinesechess/settings/config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chinesechess/settings/settingview.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chinesechess/settings/settingviewController.java" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="反正就是写了一堆东西">
+      <change afterPath="$PROJECT_DIR$/src/chinesechess/resources/秋姉妹のなく頃に.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chinesechess/META-INF/chinesechess.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chinesechess/META-INF/chinesechess.kotlin_module" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/chinesechess/chinesechess/board/chessboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chinesechess/chinesechess/board/chessboard.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/chinesechess/chinesechess/board/chessboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chinesechess/chinesechess/board/chessboardController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/chinesechess/chinesechess/chessMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chinesechess/chinesechess/chessMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chinesechess/board/boardstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/chinesechess/board/boardstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chinesechess/chinesechess/images/42.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chinesechess/board/chessboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/chinesechess/board/chessboard.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chinesechess/board/chessboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chinesechess/board/chessboardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/chinesechess/chessMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chinesechess/chessMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chinesechess/images/42.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chinesechess/resources/42.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chinesechess/images/tita.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/chinesechess/resources/tita.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chinesechess/images/wtf.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/chinesechess/resources/wtf.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chinesechess/mainview/mainview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/chinesechess/mainview/mainview.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chinesechess/piece/Advisor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chinesechess/piece/Cannon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chinesechess/piece/Chariot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chinesechess/piece/Elephant.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chinesechess/piece/General.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chinesechess/piece/Horse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chinesechess/piece/Soldier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chinesechess/settings/config" beforeDir="false" afterPath="$PROJECT_DIR$/src/chinesechess/settings/config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chinesechess/settings/settingview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/chinesechess/settings/settingview.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chinesechess/settings/settingviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chinesechess/settings/settingviewController.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -115,7 +123,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../DiarySystem_JavaFX-master" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="recentsLimit" value="5" />
@@ -128,13 +136,19 @@
       <recent name="E:\Administrator\OneDrive\java\pro\chinesechess\src\chinesechess\images" />
     </key>
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager" selected="Application.chessMain">
-    <configuration default="true" type="Applet">
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -146,6 +160,12 @@
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
+    </configuration>
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="chinesechess.ChinesechessMain" />
@@ -219,18 +239,6 @@
         <item itemvalue="Application.chessMain" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -328,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576053473723</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="反正就是写了一堆东西">
+      <created>1576166106131</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1576166106131</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -364,25 +379,34 @@
     <MESSAGE value="Now it can save chessmoveseq file.&#10;能保存棋谱文件了&#10;话说我为什么要写英文" />
     <MESSAGE value="Now it can load chessmoveseq file and regret.&#10;现在可以保存棋谱文件以及悔棋" />
     <MESSAGE value="Looks much better.&#10;什么叫现代艺术（战术后仰）" />
-    <option name="LAST_COMMIT_MESSAGE" value="Looks much better.&#10;什么叫现代艺术（战术后仰）" />
+    <MESSAGE value="反正就是写了一堆东西" />
+    <option name="LAST_COMMIT_MESSAGE" value="反正就是写了一堆东西" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="198" key="#Inspections" timestamp="1575886326872">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="552" y="198" key="#Inspections/0.0.1920.1080@0.0.1920.1080" timestamp="1575886326872" />
+    <state x="552" y="198" key="#Project_Structure" timestamp="1576243819010">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="552" y="198" key="#Project_Structure/0.0.1920.1080@0.0.1920.1080" timestamp="1576243819010" />
     <state x="679" y="342" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1576154756236">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="679" y="342" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1576154756236" />
-    <state x="285" y="259" key="#com.intellij.ide.util.MemberChooser" timestamp="1576139374066">
+    <state x="285" y="259" key="#com.intellij.ide.util.MemberChooser" timestamp="1576239690535">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="285" y="259" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1576139374066" />
-    <state x="522" y="176" key="CommitChangelistDialog2" timestamp="1576053470604">
+    <state x="285" y="259" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1576239690535" />
+    <state x="505" y="294" key="#org.jetbrains.debugger.memory.view.InstancesWindow" timestamp="1576248534043">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="522" y="176" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1576053470604" />
+    <state x="505" y="294" key="#org.jetbrains.debugger.memory.view.InstancesWindow/0.0.1920.1080@0.0.1920.1080" timestamp="1576248534043" />
+    <state x="522" y="176" key="CommitChangelistDialog2" timestamp="1576299729398">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="522" y="176" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1576299729398" />
     <state x="92" y="92" width="1736" height="896" key="DiffContextDialog" timestamp="1575470884463">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -391,38 +415,38 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="740" y="294" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1576067099547" />
-    <state width="1877" height="194" key="GridCell.Tab.0.bottom" timestamp="1576165622646">
+    <state width="916" height="352" key="GridCell.Tab.0.bottom" timestamp="1576426367749">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="194" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1576165622646" />
-    <state width="1877" height="194" key="GridCell.Tab.0.center" timestamp="1576165622646">
+    <state width="916" height="352" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1576426367749" />
+    <state width="916" height="352" key="GridCell.Tab.0.center" timestamp="1576426367749">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="194" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1576165622646" />
-    <state width="1877" height="194" key="GridCell.Tab.0.left" timestamp="1576165622645">
+    <state width="916" height="352" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1576426367749" />
+    <state width="916" height="352" key="GridCell.Tab.0.left" timestamp="1576426367749">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="194" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1576165622645" />
-    <state width="1877" height="194" key="GridCell.Tab.0.right" timestamp="1576165622646">
+    <state width="916" height="352" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1576426367749" />
+    <state width="916" height="352" key="GridCell.Tab.0.right" timestamp="1576426367749">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="194" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1576165622646" />
-    <state width="1877" height="355" key="GridCell.Tab.1.bottom" timestamp="1576161099867">
+    <state width="916" height="352" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1576426367749" />
+    <state width="916" height="352" key="GridCell.Tab.1.bottom" timestamp="1576426367750">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="355" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1576161099867" />
-    <state width="1877" height="355" key="GridCell.Tab.1.center" timestamp="1576161099867">
+    <state width="916" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1576426367750" />
+    <state width="916" height="352" key="GridCell.Tab.1.center" timestamp="1576426367749">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="355" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1576161099867" />
-    <state width="1877" height="355" key="GridCell.Tab.1.left" timestamp="1576161099867">
+    <state width="916" height="352" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1576426367749" />
+    <state width="916" height="352" key="GridCell.Tab.1.left" timestamp="1576426367749">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="355" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1576161099867" />
-    <state width="1877" height="355" key="GridCell.Tab.1.right" timestamp="1576161099867">
+    <state width="916" height="352" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1576426367749" />
+    <state width="916" height="352" key="GridCell.Tab.1.right" timestamp="1576426367749">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1877" height="355" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1576161099867" />
+    <state width="916" height="352" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1576426367749" />
     <state x="107" y="103" key="SettingsEditor" timestamp="1575551314735">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

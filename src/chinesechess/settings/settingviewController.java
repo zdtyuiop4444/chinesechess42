@@ -23,6 +23,7 @@ public class settingviewController {
     public boolean borderon = false;
     public boolean opton = true;
     public boolean fullon = false;
+    public boolean minion = false;
     public double musicvolum;
     public double sfxvolum;
     public File bgm;
@@ -62,6 +63,9 @@ public class settingviewController {
 
     @FXML
     private CheckBox bordercheck;
+
+    @FXML
+    private CheckBox minicheck;
 
 
     @FXML
@@ -134,6 +138,18 @@ public class settingviewController {
 
 
                 fullon = newValue;
+
+            }
+        });
+
+        minicheck.setSelected(minion);
+
+        minicheck.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+
+
+                minion = newValue;
 
             }
         });
@@ -266,6 +282,14 @@ public class settingviewController {
         str = br.readLine();
 
         if (str.equals("true")){
+            minion = true;
+        }else if (str.equals("false")){
+            minion = false;
+        }
+
+        str = br.readLine();
+
+        if (str.equals("true")){
             autosaveon = true;
         }else if (str.equals("false")){
             autosaveon = false;
@@ -308,6 +332,7 @@ public class settingviewController {
         osw.write(String.valueOf(borderon)+"\n");
         osw.write(String.valueOf(opton)+"\n");
         osw.write(String.valueOf(fullon)+"\n");
+        osw.write(String.valueOf(minion)+"\n");
         osw.write(String.valueOf(autosaveon)+"\n");
         osw.write(String.valueOf(commandon)+"\n");
         osw.write(String.valueOf(musicvolum)+"\n");
