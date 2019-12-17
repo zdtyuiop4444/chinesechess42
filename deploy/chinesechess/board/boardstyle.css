@@ -1,0 +1,374 @@
+
+.back {
+    -fx-font-family: "书体坊安景臣钢笔行书";
+    -fx-font-size: 72px;
+}
+
+.name {
+    -fx-font-family: "Kaiti";
+    -fx-font-size: 40px;
+}
+
+.tit {
+    -fx-background-color: white;
+    -fx-font-family: "Yu Gothic UI";
+    -fx-font-size: 20px;
+    -fx-text-fill: #EEEEEE;
+}
+
+.information {
+    -fx-font-family: "STXihei";
+    -fx-font-size: 12px;
+    -fx-text-fill: #EEEEEE;
+}
+
+.root {
+    background_color: transparent;
+    scroll_pane_background_color: background_color;
+    accent_color: #00ADB5;
+    tab_pane_background_color: #EEEEEE;
+    -fx-opacity: 0.92;
+    -fx-text-fill: #EEEEEE;
+}
+
+.combo-box-base > .arrow-button > .arrow,
+.choice-box > .open-button > .arrow,
+.menu-button > .arrow-button > .arrow,
+.split-menu-button > .arrow-button > .arrow {
+    -fx-padding: 0.208em 0.358em 0.208em 0.358em; /* 2.5px 4.29px 2.5px 4.29px */
+    -fx-shape: "M21.361,12.736l0.527,0.527L16,19.152l-5.889-5.889l0.527-0.527L16,18.098L21.361,12.736z";
+
+    -fx-background-color: #222831;
+}
+
+.background{
+    -fx-background-color: transparent;
+}
+
+.button {
+    button_background_color: transparent;
+    background_pressed_color: #EEEEEE;
+    -shrink-animate-on-press: true;
+    border_hover_color: #00ADB5;
+    -fx-border-color: transparent;
+    -fx-border-width: 2;
+
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-background-color: button_background_color;
+    text_color: #222831;
+    default_button_text_color: #EEEEEE;
+    focus_ring_border_color: #EEEEEE;
+    -fx-text-fill: #DDDDDD;
+    border_hover_default_color: derive(accent_color, -40%);
+}
+
+.button:hover, .toggle-button:hover{
+    -fx-border-color: border_hover_color;
+}
+
+.button:pressed, .toggle-button:pressed
+{
+    -fx-border-color: background_pressed_color;
+    -fx-background-color: background_pressed_color;
+}
+
+.button:focused, .toggle-button:focused
+{
+    -fx-border-color: transparent, focus_ring_border_color;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 2);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+
+.button:disabled, .button:default:disabled, .toggle-button:disabled
+{
+    -fx-opacity: 0.4;
+    -fx-background-color: button_background_color;
+    -fx-text-fill: text_color;
+}
+
+.button:default
+{
+    -fx-background-color: accent_color;
+    -fx-text-fill: default_button_text_color;
+}
+
+.button:default:hover{
+    -fx-border-color: border_hover_default_color;
+}
+
+.button:default:pressed {
+    -fx-background-color: derive(accent_color, -40%);
+}
+
+.slider {
+    track_hover_color: #666666;
+    thumb_hover_color: #171717;
+
+    thumb_pressed_color: #cccccc;
+}
+
+.text-area .content {
+    -fx-background-color: #666666, #666666;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0, 1;
+}
+
+.text-area:focused .content {
+    -fx-background-color: #666666, #666666;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0, 1;
+}
+
+.text-area:disabled .content {
+    -fx-background-color: #666666, #666666;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0, 1;
+}
+
+.text-area .content .text {
+    -fx-font-family: "Yu Gothic UI";
+    -fx-font-size: 12px;
+    -fx-text-fill: #EEEEEE;
+}
+
+.tab-pane {
+    -fx-tab-min-height: 2.91666375em; /* 34 */
+    -fx-tab-max-height: 2.91666375em; /* 34 */
+    -fx-border_color: accent_color;
+}
+
+.tab-pane > .tab-content-area {
+
+    -fx-background-color: transparent, transparent, #323841;
+
+}
+
+.tab-pane > .tab-header-area {
+    -fx-padding: 0 0.166667em 0em 0.416667em; /* 0 2 5 5 */
+    -fx-border_color: accent_color;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    button_background_color: transparent;
+    background_pressed_color: #EEEEEE;
+    -shrink-animate-on-press: true;
+    border_hover_color: #00ADB5;
+    -fx-border-color: transparent;
+    -fx-border-width: 2;
+
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-background-color: button_background_color;
+    text_color: #222831;
+    default_button_text_color: #EEEEEE;
+    focus_ring_border_color: #EEEEEE;
+    -fx-text-fill: #DDDDDD;
+    border_hover_default_color: derive(accent_color, -40%);
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: transparent, transparent, #222831;
+    -fx-background-radius: 0 0 0 0, 0 0 0 0, 0 0 0 0;
+    -fx-border_color: accent_color;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-text-fill: #222831;
+    -fx-font-size: 1em; /* 12 */
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: #DDDDDD;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label {
+    -fx-text-fill: #DDDDDD;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:hover > .tab-container > .tab-label {
+    -fx-text-fill: accent_color;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected:hover > .tab-container > .tab-label {
+    -fx-text-fill: accent_color;
+}
+
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color:
+            transparent,
+            transparent,
+            #909090;
+    -fx-background-insets: 1 1 0 1, 0 0 1 0, 1;
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-width: 2;
+    -fx-border-color: transparent, transparent;
+}
+
+.tab-pane > .tab-header-area > .control-buttons-tab > .container > .tab-down-button {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0 0 4 0;
+    -fx-padding: 4 8 9 8;
+    -fx-background-radius: 0;
+}
+
+.tab-pane > .tab-header-area > .control-buttons-tab > .container > .tab-down-button:hover {
+    -fx-background-color: transparent;
+}
+
+.tab-pane > .tab-header-area > .control-buttons-tab > .container > .tab-down-button:pressed {
+    -fx-background-color: #222831;
+}
+
+.tab-pane > .tab-header-area > .control-buttons-tab > .container > .tab-down-button > .arrow  {
+    -fx-padding: 0.083333em; /* 3px */
+    -fx-scale-shape: false;
+    -fx-shape: "M13.576,7.495c0,0.829-0.672,1.5-1.5,1.5c-0.828,0-1.5-0.672-1.5-1.5s0.672-1.5,1.5-1.5C12.904,5.995,13.576,6.667,13.576,7.495z M12.076,10.995c-0.828,0-1.5,0.672-1.5,1.5c0,0.829,0.672,1.5,1.5,1.5c0.828,0,1.5-0.672,1.5-1.5C13.576,11.667,12.904,10.995,12.076,10.995z M12.076,15.995c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5c0.828,0,1.5-0.672,1.5-1.5S12.904,15.995,12.076,15.995z";
+
+    -fx-background-insets: 0;
+    -fx-background-color: accent_color;
+}
+
+.label {
+    -fx-text-fill: #EEEEEE;
+}
+
+.text {
+    -fx-text-fill: #EEEEEE;
+}
+
+.separator{
+    border_color: transparent;
+}
+
+.check-box > .box > .mark {
+    -fx-shape: "M17.939,5.439L7.5,15.889l-5.439-5.449l0.879-0.879L7.5,14.111 l9.561-9.551L17.939,5.439z";
+
+    -fx-pref-width: 16px;
+    -fx-pref-height: 12px;
+
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
+
+.check-box > .box {
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+
+    -fx-padding: 0.166667em 0px 0.166667em 0px;     /* 2 0 2 0 */
+}
+
+
+.check-box:selected > .box{
+    -fx-background-color: accent_color;
+    -fx-border-color: accent_color;
+}
+
+.check-box:selected > .box > .mark{
+    -fx-background-color: white;
+}
+
+.check-box:pressed > .box, .check-box:selected:pressed > .box
+{
+    -fx-background-color: #666666;
+    -fx-border-color: #666666;
+}
+
+.check-box:indeterminate > .box {
+    -fx-padding: 3px;
+
+    -fx-border-color: accent_color;
+}
+
+.check-box:indeterminate > .box > .mark {
+    -fx-shape: null;
+
+    -fx-pref-width: 10px;
+    -fx-max-width: 10px;
+    -fx-min-width: 10px;
+    -fx-pref-height: 10px;
+    -fx-max-height: 10px;
+    -fx-min-height: 10px;
+
+
+}
+
+.check-box:indeterminate:pressed > .box > .mark {
+    -fx-background-color: #666666;
+}
+
+.check-box:indeterminate:pressed > .box {
+    -fx-border-color: #666666;
+}
+
+.check-box:focused > .box{
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+
+    -fx-border-width: 1, 2;
+
+    -fx-border-style: segments(1, 2), solid;
+    -fx-border-insets: -3, 0;
+}
+
+.check-box:focused:indeterminate > .box {
+    -fx-border-color: white, accent_color;
+}
+
+.check-box:disabled {
+    -fx-opacity: 0.4;
+}
+
+.check-box:disabled > .box {
+    -fx-background-color: #cdcdcd;
+    -fx-border-color: #aaa;
+}
+
+.slider {
+    -show-value-on-interaction: true;
+}
+
+.slider .thumb {
+    -fx-background-color: accent_color;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0.5em; /* 6 */
+
+    -fx-padding: 1em 0.333333em 1em 0.333333em;  /* 12 4 12 4 */
+
+    -fx-effect: null;
+}
+
+.slider:vertical .thumb {
+    -fx-padding: 0.333333em 1em 0.333333em 1em; /* 4 12 4 12 */
+}
+
+.slider .track {
+    -fx-background-color: #c6c6c6;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0.083333em; /* 1 */
+
+}
+
+.slider .fill {
+    -fx-background-color: accent_color;
+    -fx-padding: 0.083333em; /* 1 */
+}
+
+.slider:disabled {
+    -fx-opacity: 0.2;
+}
+
+.slider-popup .label {
+    -fx-background-color: #f2f2f2;
+    -fx-border-color: #cccccc;
+
+    -fx-text-fill: #111;
+
+    -fx-padding: 0.5em 0.75em 0.5em 0.75em; /* 6 9 6 9 */
+}

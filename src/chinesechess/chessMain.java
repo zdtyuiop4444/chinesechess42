@@ -14,10 +14,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class chessMain extends Application {
 
@@ -155,9 +153,9 @@ public class chessMain extends Application {
 
     public void readconfig() throws IOException {
 
-        FileReader fr = new FileReader(new File("src/chinesechess/settings/config"));
+        InputStreamReader isr = new InputStreamReader(new FileInputStream(new File("resources/config")), StandardCharsets.UTF_8);
 
-        BufferedReader br = new BufferedReader(fr);
+        BufferedReader br = new BufferedReader(isr);
 
         String str = "";
 
@@ -224,6 +222,7 @@ public class chessMain extends Application {
             File musi = new File(str);
 
             bgm = new Media(musi.toURI().toString());
+
         }catch (Exception e){
 
             bgm = null;
@@ -233,7 +232,7 @@ public class chessMain extends Application {
 
         savedic = new File(str);
 
-        fr.close();
+        isr.close();
         br.close();
     }
 

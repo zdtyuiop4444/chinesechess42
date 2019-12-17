@@ -321,7 +321,7 @@
                </children>
             </AnchorPane>
             <Separator prefWidth="${root.width-300-root.height*0.9}" />
-            <AnchorPane prefWidth="${root.width-300-root.height*0.9}">
+            <AnchorPane fx:id="downright" prefWidth="${root.width-300-root.height*0.9}">
                <children>
                   <FlowPane fx:id="rdead" hgap="${root.height*0.1-70}" vgap="${root.height*0.1-70}" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="18.0" />
                </children>

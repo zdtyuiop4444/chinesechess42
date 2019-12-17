@@ -2,6 +2,9 @@ package chinesechess.board;
 
 import chinesechess.chessMain;
 import com.sun.glass.ui.CommonDialogs;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -16,10 +19,9 @@ import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
@@ -28,6 +30,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.w3c.dom.events.Event;
 
 import java.io.*;
@@ -183,7 +186,17 @@ public class chessboardController {
     @FXML
     private TextFlow showerborder;
 
+    @FXML
+    private AnchorPane downright;
+
     private chessMain chessmain;
+
+    public boolean blackstart = false;
+
+    public double sfxvolum;
+    public String savedic;
+    public boolean autosaveon = true;
+    public boolean commandon = false;
 
     public List<Circle> possibleindicater = new ArrayList<>();
 
@@ -214,6 +227,8 @@ public class chessboardController {
     public List<String> gamelog = new ArrayList<>();
     public List<String> deads = new ArrayList<>();
     public int[] activepos = new int[2];
+    public Button next = new Button("下一步");
+    public int linenum = 0;
 
 
     @FXML
@@ -429,6 +444,14 @@ public class chessboardController {
 
         exitbutton.setOnAction(event -> {
 
+            if (autosaveon){
+                try {
+                    savemoveseq(new File(savedic+"\\autosave.chessmoveseq"));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
             try {
                 chessmain.showmainview();
             } catch (IOException ex) {
@@ -439,12 +462,100 @@ public class chessboardController {
 
         closebutton.setOnAction(event -> {
 
+            if (autosaveon){
+                try {
+                    savemoveseq(new File(savedic+"autosave.chessmoveseq"));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
             Platform.exit();
 
         });
 
-        readmap(new File("src/chinesechess/board/basicgame.chessboard"), true);
+        sendbutton.setOnMouseClicked(event -> {
 
+            loglist.appendText("玩家:"+inputarea.getText()+"\n");
+            if (commandon) {
+                if (inputarea.getText().equals("↑↑↓↓←→←→BABA")) {
+
+                    if (turnshower.getText().matches("Black Turn")) {
+                        baba = 'b';
+                    } else if (turnshower.getText().matches("Red Turn")) {
+                        baba = 'r';
+                    }
+
+                }
+
+                if (inputarea.getText().equals("WhosYourDaddy")) {
+
+                    if (turnshower.getText().matches("Black Turn")) {
+                        dady = 'b';
+                    } else if (turnshower.getText().matches("Red Turn")) {
+                        dady = 'r';
+                    }
+
+                }
+            }
+        });
+
+        if (blackstart){
+            nextturn();
+        }
+
+        readconfig();
+
+        readmap(new File("resources/basicgame.chessboard"), true);
+
+    }
+
+    public void readconfig() throws IOException {
+
+        InputStreamReader isr = new InputStreamReader(new FileInputStream(new File("resources/config")), StandardCharsets.UTF_8);
+
+        BufferedReader br = new BufferedReader(isr);
+
+        String str = "";
+
+        str = br.readLine();
+
+        str = br.readLine();
+
+        str = br.readLine();
+
+        str = br.readLine();
+
+        str = br.readLine();
+
+        if (str.equals("true")){
+            autosaveon = true;
+        }else if (str.equals("false")){
+            autosaveon = false;
+        }
+
+        str = br.readLine();
+
+        if (str.equals("true")){
+            commandon = true;
+        }else if (str.equals("false")){
+            commandon = false;
+        }
+
+        str = br.readLine();
+
+        str = br.readLine();
+
+        sfxvolum = Double.parseDouble(str);
+
+        str = br.readLine();
+
+        str = br.readLine();
+
+        savedic = str;
+
+        isr.close();
+        br.close();
     }
 
     public void setmain(chessMain chessmain) {
@@ -455,7 +566,7 @@ public class chessboardController {
 
     }
 
-    public void showpossible(int[] pos) {
+    public List<int[]> showpossible(int[] pos) {
 
         char type;
         char types;
@@ -499,13 +610,13 @@ public class chessboardController {
 
                 }
 
-                if (pos[0] - 1 > 2 && !Character.isUpperCase(game[pos[0] - 1][pos[1]])) {
+                if (pos[0] - 1 > 2 && !Character.isUpperCase(game[pos[0] - 1][pos[1]])&&pos[0] - 1 != GridPane.getColumnIndex(g[0])) {
 
                     possiblepos.add(new int[]{pos[0] - 1, pos[1]});
 
                 }
 
-                if (pos[0] + 1 < 6 && !Character.isUpperCase(game[pos[0] + 1][pos[1]])) {
+                if (pos[0] + 1 < 6 && !Character.isUpperCase(game[pos[0] + 1][pos[1]])&&pos[0] + 1 != GridPane.getColumnIndex(g[0])) {
 
                     possiblepos.add(new int[]{pos[0] + 1, pos[1]});
 
@@ -527,13 +638,13 @@ public class chessboardController {
 
                 }
 
-                if (pos[0] - 1 > 2 && !Character.isLowerCase(game[pos[0] - 1][pos[1]])) {
+                if (pos[0] - 1 > 2 && !Character.isLowerCase(game[pos[0] - 1][pos[1]])&&pos[0] - 1 != GridPane.getColumnIndex(G[0])) {
 
                     possiblepos.add(new int[]{pos[0] - 1, pos[1]});
 
                 }
 
-                if (pos[0] + 1 < 6 && !Character.isLowerCase(game[pos[0] + 1][pos[1]])) {
+                if (pos[0] + 1 < 6 && !Character.isLowerCase(game[pos[0] + 1][pos[1]])&&pos[0] + 1 != GridPane.getColumnIndex(G[0])) {
 
                     possiblepos.add(new int[]{pos[0] + 1, pos[1]});
 
@@ -877,9 +988,12 @@ public class chessboardController {
 
                             for (int j = 1; j < 10; j++) {
                                 if ((pos[0] - i - j) >= 0) {
-                                    if (game[pos[0] - i - j][pos[1]] != '.' && Character.isUpperCase(type) != Character.isUpperCase(game[pos[0] - i - j][pos[1]])) {
+                                    if (game[pos[0] - i - j][pos[1]] != '.') {
 
-                                        possiblepos.add(new int[]{pos[0] - i - j, pos[1]});
+                                        if (Character.isUpperCase(type) != Character.isUpperCase(game[pos[0] - i - j][pos[1]])) {
+                                            possiblepos.add(new int[]{pos[0] - i - j, pos[1]});
+                                        }
+
                                         break;
 
                                     }
@@ -900,9 +1014,12 @@ public class chessboardController {
 
                             for (int j = 1; j < 10; j++) {
                                 if ((pos[0] + i + j) < 9) {
-                                    if (game[pos[0] + i + j][pos[1]] != '.' && Character.isUpperCase(type) ^ Character.isUpperCase(game[pos[0] + i + j][pos[1]])) {
+                                    if (game[pos[0] + i + j][pos[1]] != '.') {
 
-                                        possiblepos.add(new int[]{pos[0] + i + j, pos[1]});
+                                        if (Character.isUpperCase(type) ^ Character.isUpperCase(game[pos[0] + i + j][pos[1]])) {
+                                            possiblepos.add(new int[]{pos[0] + i + j, pos[1]});
+                                        }
+
                                         break;
 
                                     }
@@ -923,9 +1040,11 @@ public class chessboardController {
 
                             for (int j = 1; j < 10; j++) {
                                 if ((pos[1] - i - j) >= 0) {
-                                    if (game[pos[0]][pos[1] - i - j] != '.' && Character.isUpperCase(type) ^ Character.isUpperCase(game[pos[0]][pos[1] - i - j])) {
+                                    if (game[pos[0]][pos[1] - i - j] != '.') {
 
-                                        possiblepos.add(new int[]{pos[0], pos[1] - i - j});
+                                        if (Character.isUpperCase(type) ^ Character.isUpperCase(game[pos[0]][pos[1] - i - j])) {
+                                            possiblepos.add(new int[]{pos[0], pos[1] - i - j});
+                                        }
                                         break;
 
                                     }
@@ -947,9 +1066,12 @@ public class chessboardController {
 
                             for (int j = 1; j < 10; j++) {
                                 if ((pos[1] + i + j) < 10) {
-                                    if (game[pos[0]][pos[1] + i + j] != '.' && Character.isUpperCase(type) ^ Character.isUpperCase(game[pos[0]][pos[1] + i + j])) {
+                                    if (game[pos[0]][pos[1] + i + j] != '.') {
 
-                                        possiblepos.add(new int[]{pos[0], pos[1] + i + j});
+                                        if (Character.isUpperCase(type) ^ Character.isUpperCase(game[pos[0]][pos[1] + i + j])) {
+                                            possiblepos.add(new int[]{pos[0], pos[1] + i + j});
+                                        }
+
                                         break;
 
                                     }
@@ -1040,7 +1162,7 @@ public class chessboardController {
 
         fillpossible(possiblepos);
 
-        possiblepos.clear();
+        return possiblepos;
 
     }
 
@@ -1523,7 +1645,7 @@ public class chessboardController {
                     showalert("不要往棋盘上放奇怪的东西", filename, line + errorline - 10);
                     return;
                 case '0':
-                    readmap(new File("src/chinesechess/board/basicgame.chessboard"), false);
+                    readmap(new File("resources/basicgame.chessboard"), false);
                     return;
             }
         }
@@ -1564,10 +1686,19 @@ public class chessboardController {
             bx = Integer.parseInt(String.valueOf(str.charAt(4)));
             by = Integer.parseInt(String.valueOf(str.charAt(6)));
 
-            if (num % 2 == 1) {
-                osw.write((9 - ax) + " " + (10 - ay) + " " + (9 - bx) + " " + (10 - by) + "\n");
-            } else {
-                osw.write((ax + 1) + " " + (ay + 1) + " " + (bx + 1) + " " + (by + 1) + "\n");
+            if (blackstart) {
+                if ((num & 1) != 1) {
+                    osw.write((9 - ax) + " " + (10 - ay) + " " + (9 - bx) + " " + (10 - by) + "\n");
+                } else {
+                    osw.write((ax + 1) + " " + (ay + 1) + " " + (bx + 1) + " " + (by + 1) + "\n");
+                }
+
+            }else {
+                if ((num & 1) != 0) {
+                    osw.write((9 - ax) + " " + (10 - ay) + " " + (9 - bx) + " " + (10 - by) + "\n");
+                } else {
+                    osw.write((ax + 1) + " " + (ay + 1) + " " + (bx + 1) + " " + (by + 1) + "\n");
+                }
             }
         }
 
@@ -1588,19 +1719,22 @@ public class chessboardController {
         BufferedReader br = new BufferedReader(fr);
 
         String filename = gameseq.getName();
-        int num = 0;
         int line = 0;
-        int ax;
-        int ay;
-        int bx;
-        int by;
         int stepcatch = 0;
-        char target;
-        int[] startpos = new int[2];
-        int[] endpos = new int[2];
         boolean totalstepdata = false;
         boolean mataend = false;
         boolean stepstart = false;
+
+        if (turnshower.getText().equals("Black Turn")) {
+
+            blackstart = true;
+
+        }
+
+        downright.getChildren().add(next);
+
+        AnchorPane.setBottomAnchor(next,20.0);
+        AnchorPane.setRightAnchor(next,20.0);
 
         String str;
 
@@ -1608,13 +1742,13 @@ public class chessboardController {
             line++;
             str = str.split("#")[0];
 
-            if (!stepstart && !mataend && str.charAt(0) == '@') {
+            if (!mataend && str.charAt(0) == '@') {
 
                 str = str.substring(1);
 
                 if (str.startsWith("TOTAL_STEP=")) {
                     try {
-                        stepcatch = Integer.parseInt(str.substring(11));
+                        stepcatch = Integer.parseInt(str.substring(str.lastIndexOf('=')+1));
                         totalstepdata = true;
                     } catch (ArrayIndexOutOfBoundsException ae) {
                         showalert("步数数据出错", filename, line);
@@ -1641,78 +1775,191 @@ public class chessboardController {
                 }
                 stepstart = true;
                 mataend = false;
-                continue;
-            }
-
-            if (stepstart) {
-
-                num++;
-                try {
-                    ax = Integer.parseInt(String.valueOf(str.charAt(0)));
-                    ay = Integer.parseInt(String.valueOf(str.charAt(2)));
-                    bx = Integer.parseInt(String.valueOf(str.charAt(4)));
-                    by = Integer.parseInt(String.valueOf(str.charAt(6)));
-                } catch (Exception ae) {
-                    showalert("棋谱数据异常", filename, line);
-                    return;
-                }
-
-                if (num % 2 == 1) {
-                    startpos[0] = 9 - ax;
-                    startpos[1] = 10 - ay;
-                    endpos[0] = 9 - bx;
-                    endpos[1] = 10 - by;
-                } else {
-                    startpos[0] = ax - 1;
-                    startpos[1] = ay - 1;
-                    endpos[0] = bx - 1;
-                    endpos[1] = by - 1;
-                }
-
-                if (startpos[0] > 8 || endpos[0] > 8 || startpos[1] > 9 || endpos[1] > 9 || startpos[0] < 0 || endpos[0] < 0 || startpos[1] < 0 || endpos[1] < 0) {
-
-                    showalert("位置在边界外", filename, line);
-                    return;
-
-                }
-
-                target = game[startpos[0]][startpos[1]];
-                if (num % 2 == 1) {
-                    if (Character.isLowerCase(game[endpos[0]][endpos[1]])) {
-                        showalert("目标位置存在本方棋子", filename, line);
-                        return;
-                    }
-                    if (Character.isLowerCase(target)) {
-                        move(startpos, endpos, target);
-                    } else {
-                        showalert("起始位置棋子错误，可能是没有棋子或棋子不归属本方", filename, line);
-                        return;
-                    }
-                } else {
-                    if (Character.isUpperCase(game[endpos[0]][endpos[1]])) {
-                        showalert("目标位置存在本方棋子", filename, line);
-                        return;
-                    }
-                    if (Character.isUpperCase(target)) {
-                        move(startpos, endpos, target);
-                    } else {
-                        showalert("起始位置棋子错误，可能是没有棋子或棋子不归属本方", filename, line);
-                        return;
-                    }
-                }
+                break;
             }
 
         }
 
-        if (num == stepcatch) {
+        next.setOnAction(new EventHandler<ActionEvent>() {
+
+             @Override
+             public void handle(ActionEvent event) {
+
+                 try {
+                     readnext(br,fr,filename);
+                 } catch (IOException ex) {
+                     ex.printStackTrace();
+                 }
+
+             }
+
+        });
+
+    }
+
+    public void readnext(BufferedReader br,FileReader fr,String filename) throws IOException {
+
+        int ax;
+        int ay;
+        int bx;
+        int by;
+        char target;
+        int[] startpos = new int[2];
+        int[] endpos = new int[2];
+        boolean isright = false;
+
+        String
+
+        str = br.readLine();
+
+        if (str == null){
+
             showalert("棋谱数据读取成功");
             loglist.appendText("棋谱数据读取成功\n");
-        } else {
-            showalert("TOTAL_STEP数据与实际不符", filename, line);
+
+            linenum = 0;
+
+            try {
+                fr.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            try {
+                br.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+            downright.getChildren().remove(next);
+
+            return;
+
         }
 
-        fr.close();
-        br.close();
+        linenum++;
+
+        try {
+            ax = Integer.parseInt(str.split(" ")[0]);
+            ay = Integer.parseInt(str.split(" ")[1]);
+            bx = Integer.parseInt(str.split(" ")[2]);
+            by = Integer.parseInt(str.split(" ")[3]);
+        } catch (Exception ae) {
+            showalert("棋谱数据异常", filename, linenum + 3);
+            return;
+        }
+
+        if (blackstart) {
+            if (linenum % 2 == 0) {
+                startpos[0] = 9 - ax;
+                startpos[1] = 10 - ay;
+                endpos[0] = 9 - bx;
+                endpos[1] = 10 - by;
+            } else {
+                startpos[0] = ax - 1;
+                startpos[1] = ay - 1;
+                endpos[0] = bx - 1;
+                endpos[1] = by - 1;
+            }
+        }else {
+            if (linenum % 2 == 1) {
+                startpos[0] = 9 - ax;
+                startpos[1] = 10 - ay;
+                endpos[0] = 9 - bx;
+                endpos[1] = 10 - by;
+            } else {
+                startpos[0] = ax - 1;
+                startpos[1] = ay - 1;
+                endpos[0] = bx - 1;
+                endpos[1] = by - 1;
+            }
+        }
+
+        if (startpos[0] > 8 || endpos[0] > 8 || startpos[1] > 9 || endpos[1] > 9 || startpos[0] < 0 || endpos[0] < 0 || startpos[1] < 0 || endpos[1] < 0) {
+
+            showalert("位置在边界外", filename, linenum + 3);
+            return;
+
+        }
+
+        target = game[startpos[0]][startpos[1]];
+
+        if (Character.isLowerCase(target)&&turnshower.getText().equals("Black Turn")) {
+
+            showalert("起始位置非本方棋子", filename, linenum + 3);
+            return;
+
+        }else if (Character.isUpperCase(target)&&turnshower.getText().equals("Red Turn")) {
+
+            showalert("起始位置非本方棋子", filename, linenum + 3);
+            return;
+
+        }else if (target == '.'){
+
+            showalert("起始位置非棋子", filename, linenum + 3);
+            return;
+
+        }
+
+        if (linenum % 2 == 1||linenum == 1) {
+            if (Character.isLowerCase(game[endpos[0]][endpos[1]])) {
+                showalert("目标位置存在本方棋子", filename, linenum + 3);
+
+                linenum -=1;
+
+                return;
+            }
+            if (Character.isLowerCase(target)) {
+                for (int[] pos:showpossible(startpos)) {
+
+                    if (pos[0]==endpos[0]&&pos[1]==endpos[1]){
+                        isright = true;
+                        break;
+                    }
+
+                }
+
+                if (!isright){
+
+                    linenum -=1;
+                    showalert("棋子移动方式非法", filename, linenum + 3);
+                    return;
+
+                }
+                move(startpos, endpos, target);
+            } else {
+                showalert("起始位置棋子错误，可能是没有棋子或棋子不归属本方", filename, linenum + 3);
+                return;
+            }
+        } else {
+            if (Character.isUpperCase(game[endpos[0]][endpos[1]])) {
+                showalert("目标位置存在本方棋子", filename, linenum + 3);
+
+                linenum -=1;
+                return;
+            }
+            if (Character.isUpperCase(target)) {
+                for (int[] pos:showpossible(startpos)) {
+
+                    if (pos[0]==endpos[0]&&pos[1]==endpos[1]){
+                        isright = true;
+                        break;
+                    }
+
+                }
+
+                if (!isright){
+
+                    linenum -=1;
+                    showalert("棋子移动方式非法", filename, linenum + 3);
+                    return;
+
+                }
+                move(startpos, endpos, target);
+            } else {
+                showalert("起始位置棋子错误，可能是没有棋子或棋子不归属本方", filename, linenum + 3);
+                return;
+            }
+        }
 
     }
 
@@ -1998,7 +2245,7 @@ public class chessboardController {
 
         Alert gamealert = new Alert(Alert.AlertType.CONFIRMATION);
 
-        Image image = new Image("/chinesechess/resources/42.png");
+        Image image = new Image("resources/42.png");
 
         ImageView imageView = new ImageView();
 
@@ -2023,7 +2270,9 @@ public class chessboardController {
         restart.setOnAction(event -> {
 
             try {
-                readmap(new File("src/chinesechess/board/basicgame.chessboard"), false);
+                readmap(new File("resources/basicgame.chessboard"), false);
+                dady = '0';
+                baba = '0';
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -2031,6 +2280,14 @@ public class chessboardController {
         });
 
         exit.setOnAction(event -> {
+
+            if (autosaveon){
+                try {
+                    savemoveseq(new File(savedic+"autosave.chessmoveseq"));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
 
             Platform.exit();
 
@@ -2256,6 +2513,75 @@ public class chessboardController {
 
     }
 
+    public void translate(int[] posa, int[] posb, Group piece){
+
+
+
+        double height = gameboard.getHeight()/9;
+
+        File fx = new File("resources/move.mp3");
+
+        AudioClip sfx= new AudioClip(fx.toURI().toString());
+
+        sfx.setVolume(sfxvolum);
+
+        double x = height*(posb[0]-posa[0]);
+        double y = height*(posb[1]-posa[1]);
+
+        Timeline timeline = new Timeline();
+
+        KeyValue kv1x = new KeyValue(piece.translateXProperty(),0);
+        KeyValue kv1y = new KeyValue(piece.translateYProperty(),0);
+        KeyValue kv1z = new KeyValue(piece.opacityProperty(),1);
+        KeyValue[] kv1 = new KeyValue[]{kv1x,kv1y,kv1z};
+        KeyFrame kf1 = new KeyFrame(Duration.seconds(0),"kf1",event -> {
+
+        },kv1);
+
+        KeyValue kv2x = new KeyValue(piece.translateXProperty(),x/8);
+        KeyValue kv2y = new KeyValue(piece.translateYProperty(),y/8);
+        KeyValue kv2z = new KeyValue(piece.opacityProperty(),0);
+        KeyValue[] kv2 = new KeyValue[]{kv2x,kv2y,kv2z};
+        KeyFrame kf2 = new KeyFrame(Duration.seconds(0.2),"kf2",event -> {
+
+        },kv2);
+
+        KeyValue kv22x = new KeyValue(piece.translateXProperty(),7*x/8);
+        KeyValue kv22y = new KeyValue(piece.translateYProperty(),7*y/8);
+        KeyValue kv22z = new KeyValue(piece.opacityProperty(),0);
+        KeyValue[] kv22 = new KeyValue[]{kv22x,kv22y,kv22z};
+        KeyFrame kf22 = new KeyFrame(Duration.seconds(0.5),"kf22",event -> {
+            sfx.play();
+        },kv22);
+
+        KeyValue kv3x = new KeyValue(piece.translateXProperty(),x);
+        KeyValue kv3y = new KeyValue(piece.translateYProperty(),y);
+        KeyValue kv3z = new KeyValue(piece.opacityProperty(),1);
+        KeyValue[] kv3 = new KeyValue[]{kv3x,kv3y,kv3z};
+        KeyFrame kf3 = new KeyFrame(Duration.seconds(0.7),"kf3",event -> {
+
+        },kv3);
+
+        KeyValue kv4x = new KeyValue(piece.translateXProperty(),0);
+        KeyValue kv4y = new KeyValue(piece.translateYProperty(),0);
+        KeyValue kv4z = new KeyValue(piece.opacityProperty(),1);
+        KeyValue[] kv4 = new KeyValue[]{kv4x,kv4y,kv4z};
+        KeyFrame kf4 = new KeyFrame(Duration.seconds(0.7001),"kf4",event -> {
+
+        },kv4);
+
+        timeline.getKeyFrames().addAll(kf1,kf2,kf22,kf3,kf4);
+
+        timeline.play();
+        timeline.setOnFinished(event -> {
+
+            timeline.jumpTo(Duration.seconds(0));
+            GridPane.setConstraints(piece, posb[0], posb[1]);
+
+        });
+
+    }
+
     public void move(int[] posa, int[] posb, char type) {
 
         if (turnshower.getText().equals("Black Turn") && Character.isLowerCase(type)) {
@@ -2288,7 +2614,7 @@ public class chessboardController {
                 for (Group piece : G) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
-                            GridPane.setConstraints(piece, posb[0], posb[1]);
+                            translate(posa,posb,piece);
                             return;
                         }
                     } catch (Exception ignored) {
@@ -2300,7 +2626,7 @@ public class chessboardController {
                 for (Group piece : A) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
-                            GridPane.setConstraints(piece, posb[0], posb[1]);
+                            translate(posa,posb,piece);
                             return;
                         }
                     } catch (Exception ignored) {
@@ -2312,7 +2638,7 @@ public class chessboardController {
                 for (Group piece : E) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
-                            GridPane.setConstraints(piece, posb[0], posb[1]);
+                            translate(posa,posb,piece);
                             return;
                         }
                     } catch (Exception ignored) {
@@ -2324,7 +2650,7 @@ public class chessboardController {
                 for (Group piece : H) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
-                            GridPane.setConstraints(piece, posb[0], posb[1]);
+                            translate(posa,posb,piece);
                             return;
                         }
                     } catch (Exception ignored) {
@@ -2336,7 +2662,7 @@ public class chessboardController {
                 for (Group piece : C) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
-                            GridPane.setConstraints(piece, posb[0], posb[1]);
+                            translate(posa,posb,piece);
                             return;
                         }
                     } catch (Exception ignored) {
@@ -2348,7 +2674,7 @@ public class chessboardController {
                 for (Group piece : N) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
-                            GridPane.setConstraints(piece, posb[0], posb[1]);
+                            translate(posa,posb,piece);
                             return;
                         }
                     } catch (Exception ignored) {
@@ -2360,7 +2686,7 @@ public class chessboardController {
                 for (Group piece : S) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
-                            GridPane.setConstraints(piece, posb[0], posb[1]);
+                            translate(posa,posb,piece);
                             return;
                         }
                     } catch (Exception ignored) {
@@ -2372,7 +2698,7 @@ public class chessboardController {
                 for (Group piece : g) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
-                            GridPane.setConstraints(piece, posb[0], posb[1]);
+                            translate(posa,posb,piece);
                             return;
                         }
                     } catch (Exception ignored) {
@@ -2384,7 +2710,7 @@ public class chessboardController {
                 for (Group piece : a) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
-                            GridPane.setConstraints(piece, posb[0], posb[1]);
+                            translate(posa,posb,piece);
                             return;
                         }
                     } catch (Exception ignored) {
@@ -2396,7 +2722,7 @@ public class chessboardController {
                 for (Group piece : e) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
-                            GridPane.setConstraints(piece, posb[0], posb[1]);
+                            translate(posa,posb,piece);
                             return;
                         }
                     } catch (Exception ignored) {
@@ -2408,7 +2734,7 @@ public class chessboardController {
                 for (Group piece : h) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
-                            GridPane.setConstraints(piece, posb[0], posb[1]);
+                            translate(posa,posb,piece);
                             return;
                         }
                     } catch (Exception ignored) {
@@ -2420,7 +2746,7 @@ public class chessboardController {
                 for (Group piece : c) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
-                            GridPane.setConstraints(piece, posb[0], posb[1]);
+                            translate(posa,posb,piece);
                             return;
                         }
                     } catch (Exception ignored) {
@@ -2432,7 +2758,7 @@ public class chessboardController {
                 for (Group piece : n) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
-                            GridPane.setConstraints(piece, posb[0], posb[1]);
+                            translate(posa,posb,piece);
                             return;
                         }
                     } catch (Exception ignored) {
@@ -2444,7 +2770,7 @@ public class chessboardController {
                 for (Group piece : s) {
                     try {
                         if (GridPane.getColumnIndex(piece) == posa[0] && GridPane.getRowIndex(piece) == posa[1]) {
-                            GridPane.setConstraints(piece, posb[0], posb[1]);
+                            translate(posa,posb,piece);
                             return;
                         }
                     } catch (Exception ignored) {

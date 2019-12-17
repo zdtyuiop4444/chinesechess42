@@ -249,9 +249,10 @@ public class settingviewController {
     }
 
     public void readconfig() throws IOException {
-        FileReader fr = new FileReader(new File("src/chinesechess/settings/config"));
 
-        BufferedReader br = new BufferedReader(fr);
+        InputStreamReader isr = new InputStreamReader(new FileInputStream(new File("resources/config")), StandardCharsets.UTF_8);
+
+        BufferedReader br = new BufferedReader(isr);
 
         String str = "";
 
@@ -319,13 +320,13 @@ public class settingviewController {
 
         savedic = new File(str);
 
-        fr.close();
+        isr.close();
         br.close();
     }
 
     public void saveconfig() throws IOException {
 
-        FileOutputStream fos = new FileOutputStream(new File("src/chinesechess/settings/config"));
+        FileOutputStream fos = new FileOutputStream(new File("resources/config"));
 
         OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
 
